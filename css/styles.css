@@ -31,3 +31,13 @@ footer{
     color:darkviolet;
     font-size: small;
 }
+a:hover{
+    color:darkgreen;
+}
+a:visited{
+    color:gray;
+
+}
+a:link{
+    color:blue;
+}
