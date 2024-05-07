@@ -20,7 +20,13 @@ p{
 }
 .menu{
 color:brown;
+
 }
 .nose{
     background-color: black;
+}
+footer{
+    background-color: lightpink;
+    color:darkviolet;
+    font-size: small;
 }
