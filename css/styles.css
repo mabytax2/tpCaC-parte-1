@@ -1,0 +1,20 @@
+*{
+    overflow: scroll;
+    /*aca va el principal*/
+}
+
+body{
+    color:black;
+    background-color: bisque;
+}
+
+p{ 
+    color: darkblue; 
+    font-size:12px;
+    font-family:Courier;
+    border:2px;
+    /*border-color:blue;
+    border-style:solid;*/
+    width:200px; 
+    height:100px;
+}
