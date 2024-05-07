@@ -9,6 +9,17 @@ body{
     background-color: bisque;
 }
 
+header{
+border-radius: 3px;
+border-color: deeppink;
+}
+h1{
+    color:crimson;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: larger;
+    font-style: italic;
+    
+}
 p{ 
     color: darkblue; 
     font-size:12px;
