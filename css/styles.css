@@ -52,4 +52,6 @@ a:visited{
 a:link{
     color:blue;
 }
-/*falta agregar lo de responsive, lo de las animaciones, las google fonts, etc*/
+/*falta agregar lo de responsive, lo de las animaciones, las google fonts,  iconos, etc*/
+@import url('https://fonts.googleapis.com/css2?family=Jacquard+24+Charted&display=swap');
+
