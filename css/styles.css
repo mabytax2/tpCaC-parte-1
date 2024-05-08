@@ -31,7 +31,9 @@ p{
     height:100px;
 }
 .menu{
-color:brown;
+    color:brown;
+    font-family: 'Tangerine', serif;
+    font-size: 48px;
 
 }
 .nose{
