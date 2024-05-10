@@ -1,3 +1,4 @@
 https://www.uv.es/jac/guia/indice.htm
 
 https://blog.hubspot.es/website/selectores-css
+@import url('https://fonts.googleapis.com/css2?family=Jacquard+24+Charted&display=swap');

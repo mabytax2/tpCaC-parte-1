@@ -13,13 +13,14 @@ header{
 border-radius: 3px;
 border-color: deeppink;
 }
+
 h1{
     color:crimson;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: larger;
-    font-style: italic;
-    
+    font-style: italic;  
 }
+
 p{ 
     color: darkblue; 
     font-size:12px;
@@ -30,32 +31,38 @@ p{
     width:200px; 
     height:100px;
 }
+
 .menu{
     color:brown;
     font-family: 'Tangerine', serif;
     font-size: 48px;
 
 }
+
 .nose{
     background-color: black;
 }
+
 footer{
     background-color: lightpink;
     color:darkviolet;
     font-size: small;
 }
+
 a:hover{
     color:darkgreen;
 }
+
 a:visited{
     color:gray;
-
 }
+
 a:link{
     color:blue;
 }
+
 /*falta agregar lo de responsive, lo de las animaciones,  iconos, etc*/
-@import url('https://fonts.googleapis.com/css2?family=Jacquard+24+Charted&display=swap');
+
 
 .material-symbols-outlined {
   font-variation-settings:
@@ -64,9 +71,10 @@ a:link{
   'GRAD' 0,
   'opsz' 48
 }
+
 .titulos{
     font-family: "Jacquard 24 Charted", system-ui;
     font-weight: 400;
     font-style: normal;
-    font-size: 40px;
+    font-size: 20px;
 }
