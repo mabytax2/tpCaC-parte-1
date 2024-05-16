@@ -22,7 +22,7 @@ h1{
     font-size: larger;
     font-style: italic;  
 }
-
+content´ç
 p{ 
     color: darkblue; 
     font-size:12px;
@@ -65,7 +65,19 @@ a:link{
 
 /*falta agregar lo de responsive, lo de las animaciones,  iconos, etc*/
 
+.content{
+    display:flex;
+}
 
+img {
+    max-width: 20%;
+    height: 100vh;
+    object-fit: cover;
+  }
+  
+  .content {
+    flex-grow: 1;
+  }
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
