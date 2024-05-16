@@ -70,11 +70,15 @@ a:link{
 }
 
 img {
-    max-width: 20%;
-    height: 100vh;
-    object-fit: cover;
+    border: 0px;
+    padding: 0px;
   }
   
+#banner-ing-elec {
+max-width: 20%;
+    height: 100vh;
+    object-fit: cover;
+}
   .content {
     flex-grow: 1;
   }
