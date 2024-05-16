@@ -22,7 +22,35 @@ h1{
     font-size: larger;
     font-style: italic;  
 }
-content´ç
+.container{
+    display: flex;
+}
+
+.content{
+    flex-grow: 1;
+    text-align: left;
+}
+
+@media only screen and (max-width: 300px) {
+   
+    .content {
+      color:black ;
+      padding: 20px;
+    }
+  }@media only screen and (max-width: 600px) {
+   
+    .content {
+      color:crimson;
+      padding: 20px;
+    }
+  }
+@media only screen and (min-width: 600px) {
+   
+    .content {
+      color:darkblue;
+      padding: 20px;
+    }
+  }
 p{ 
     color: darkblue; 
     font-size:12px;
