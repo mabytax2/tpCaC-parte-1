@@ -2,3 +2,7 @@ https://www.uv.es/jac/guia/indice.htm
 
 https://blog.hubspot.es/website/selectores-css
 @import url('https://fonts.googleapis.com/css2?family=Jacquard+24+Charted&display=swap');
+ <i class="fa-solid fa-heart fa-beat fa-sm"></i>
+  <!-- <i class="fa-regular fa-heart fa-beat"></i> -->
+   <FontAwesomeIcon icon="fa-regular fa-heart" beat />
+   
