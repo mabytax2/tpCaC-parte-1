@@ -129,8 +129,13 @@ max-width: 30%;
     font-style: normal;
     font-size: 20px;
 }
-input{
+input, textarea{
  background-color: aquamarine;  
  border-style: solid; 
  border-color: aqua;
+}
+button{
+    color:darkgreen;
+    border-radius: 3px;
+    
 }
