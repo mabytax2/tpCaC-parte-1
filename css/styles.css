@@ -134,9 +134,12 @@ input, textarea{
  border-style: solid; 
  border-color: aqua;
 }
-button{
+.custom-button{
     background-color:darkgreen;
     color: black;
     border-radius: 3px;
     border-style: dashed;
+    width: 100px;
+    height: 30px;
+    font-weight: 700;
 }
