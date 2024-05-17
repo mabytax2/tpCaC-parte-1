@@ -142,4 +142,15 @@ input, textarea{
     width: 100px;
     height: 30px;
     font-weight: 700;
+    cursor:pointer;
+}
+.custom-button:hover{
+    background-color: yellow;
+
+}
+
+.texto-basico1{
+    color:darkviolet;
+    font-size: larger;
+    
 }
