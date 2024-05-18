@@ -22,11 +22,6 @@ h1{
     font-size: larger;
     font-style: italic;  
 }
-/* .titulos{
-    color:green;
-    font-size: larger;
-    font-family:fantasy, 'Courier New', Courier, monospace;
-} */
 .container{
     display: flex;
 }
