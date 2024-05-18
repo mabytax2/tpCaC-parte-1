@@ -61,8 +61,7 @@ p{
     font-size:12px;
     font-family:Courier;
     border:2px;
-    /*border-color:blue;
-    border-style:solid;*/
+   margin:0px;
     width:200px; 
     height:100px;
 }
