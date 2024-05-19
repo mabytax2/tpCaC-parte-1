@@ -72,11 +72,12 @@ a:link{
     color:blue;
 }
 
-.column{
+.columna{
     flex:1;
     flex-direction: column;
     text-align: left;
     padding:0px;
+    color:maroon;
 }
 
 img {
@@ -89,9 +90,7 @@ max-width:fit-content;
     height: 100vh;
     object-fit: cover;
 }
-  .content {
-    flex-grow: 1;
-  }
+  
 
 form{
 padding:0px;
