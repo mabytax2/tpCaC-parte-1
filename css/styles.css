@@ -26,15 +26,17 @@ h1{
 }
 .container{
     display: flex;
-    flex-direction: column;
+  
 }
 
 .content{
     flex-grow: 1;
-    flex-direction: column;
+  
      
 }
-
+.columna{
+    flex: 1;    
+}
 /* @import url('https://fonts.googleapis.com/css2?family=Jacquard+24+Charted&display=swap'); */
 p{ 
     color: red; 
@@ -73,13 +75,7 @@ a:link{
     color:blue;
 }
 
-.columna{
-    flex:1;
-    flex-direction: column;
-    text-align: left;
-    padding:0px;
-   
-}
+
 
 img {
     border: 0px;
