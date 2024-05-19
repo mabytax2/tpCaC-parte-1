@@ -4,52 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Datos de Contacto</title>
-    <link rel="stylesheet" href="./css/styles.css">
-    <style>
+    
+    <!-- <style>
       @import url('https://fonts.googleapis.com/css2?family=Jacquard+24+Charted&display=swap');
-      </style>
+      </style> -->
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-xrR+xx+K1uOoW3pXs9b2D7FjO8j4lYi6kKxX+2Z7yZ7z9IfwL1gk7bDySv+5zv1U" crossorigin="anonymous">
-
+<link rel="stylesheet" href="./css/styles.css">
           <script src="https://kit.fontawesome.com/28d049d17c.js" crossorigin="anonymous"></script>
           <script src="./scripts/scripts.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
         <a href="./index.html"><i class="fa-solid fa-house-chimney "></i>Home</a>
-    </header>
+        <br><br>
+        <h1><i class="fa-regular fa-heart fa-beat"></i> Página de Contacto <i class="fa-solid fa-ghost fa-spin"></i></h1>
+
+    
+      </header>
     <main>
       <div class="container"> <!-- aca pongo el div ppal -->
-        <div class="column"> <!-- aca pongo la imagen que va a ser un banner vertical -->
+        <div class="columna"> <!-- aca pongo la imagen que va a ser un banner vertical -->
             <img id="banner-ing-elec"     src="./img/unlam banner vertical.jpg" alt="Ingenieria Electronica">
         </div>
-        <div class="column">
-      <h1 class="titulos">Formulario de Contacto...</h1>
-        <form action="/my-handling-form-page" method="post">
-        <ul class="menu">
-          <li>
-            <label for="name">Nombre:</label>
-            <input type="text" id="name" name="user_name" required/>
-          </li>
-          <li>
-            <label for="mail">Correo electrónico:</label>
-            <input type="email" id="mail" name="user_mail" required/>
-          </li>
-          <li>
-            <label for="msg">Mensaje:</label>
-            <textarea id="msg" name="user_message" required></textarea>
-          </li>
-        </ul>
-        <input type="checkbox" id="checkbox" name="checkbox" required>
-        <label for="checkbox">Acepto los términos y condiciones</label>
-        <br>
-        <br>
-        <br>
-
-        <button class="custom-button" type="submit">Enviar formulario</button>
-      </form>
+        <div class="columna">
+           <h1 class="titulos">Formulario de Contacto...</h1>
+            <form action="/my-handling-form-page" method="post">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="user_name" required/>
+                 <br>
+                 <label for="mail">Correo electrónico:</label>
+                 <input type="email" id="mail" name="user_mail" required/>
+                 <br>
+                 <label for="tipo-m">Selecciona un tipo de mensaje</label>
+                 <select name="tipo-m" id="tipo-m">
+                   <option value="comentario">Escribir un comentario</option>
+                   <option value="pregunta">Escribir una pregunta</option>
+                   <option value="queja">Escribir una queja</option>
+                
+                   </select>
+              <br>
+            
+                  <label for="msg">Mensaje:</label>
+                  <textarea id="msg" name="user_message" required></textarea>
+              <br>
+              <br>
+         <input type="checkbox" id="checkbox" name="checkbox" required>
+         <label for="checkbox">Acepto los términos y condiciones</label>
+         <br>
+         <button class="custom-button" type="submit">Enviar formulario</button>
+         <br><br>
+       </form>
+     </div>
     </div>
-  </div>
-    </main>
+  </main>
     <footer>
       Hecho por maria alejandra balmaceda
     </footer>
