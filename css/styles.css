@@ -12,6 +12,7 @@ body{
 }
 
 header{
+    
 border-radius: 3px;
 border-color: deeppink;
 }
@@ -24,6 +25,7 @@ h1{
 }
 .container{
     display: flex;
+    flex-direction: column;
 }
 
 .content{
