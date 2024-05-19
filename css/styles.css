@@ -31,49 +31,7 @@ h1{
     text-align: left;
 }
 
-@media only screen and (max-width: 300px) {
-   
-    .content {
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-      color:black ;
-      padding: 20px;
-    }
-    footer{
-        font-family:fantasy;
-        background-color: red;
-        color:darkorange;
-        font-size:medium;
-    }
-  }
-  
-@media only screen and (max-width: 600px) {
-   
-    .content {
-        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-      color:crimson;
-      padding: 20px;
-    }
-    footer{
-        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
-        background-color: darkmagenta;
-        color:green;
-        font-size: large;
-    }
-  }
-@media only screen and (min-width: 600px) {
-   
-    .content {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color:blueviolet;
-      padding: 20px;
-    }
-    footer{
-        font-family:cursive;
-        background-color: rgb(248, 87, 221);
-        color:blue;
-        font-size:larger;
-    }
-  }
+@import url('https://fonts.googleapis.com/css2?family=Jacquard+24+Charted&display=swap');
 p{ 
     color: red; 
     font-size:12px;
@@ -180,3 +138,46 @@ input, textarea{
 .custom-li{
     font-family:Verdana, Geneva, Tahoma, sans-serif
 }
+ @media only screen and (max-width: 300px) { 
+   
+    .content {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      color:black ;
+      padding: 20px;
+    }
+    footer{
+        font-family:fantasy;
+        background-color: red;
+        color:darkorange;
+        font-size:medium;
+    }
+  }
+  
+@media only screen and (max-width: 600px) {
+   
+    .content {
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      color:crimson;
+      padding: 20px;
+    }
+    footer{
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+        background-color: darkmagenta;
+        color:green;
+        font-size: large;
+    }
+  }
+@media only screen and (min-width: 600px) {
+   
+    .content {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color:blueviolet;
+      padding: 20px;
+    }
+    footer{
+        font-family:cursive;
+        background-color: rgb(248, 87, 221);
+        color:blue;
+        font-size:larger;
+    }
+  } 
