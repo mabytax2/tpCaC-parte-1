@@ -55,7 +55,19 @@ p{
     
 }
 
+.videoteca{
+    display:flex
+    flex-wrap: wrap;
+    justify-content:space-around;
+}
 
+.tarjeta-video{
+    width: 150px;
+    margin:10px;
+    padding: 10px;
+    border:1px dotted black;
+    text-align: center;
+}
 
 footer{
     background-color: lightpink;
