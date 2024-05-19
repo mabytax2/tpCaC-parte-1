@@ -29,10 +29,10 @@
            <h1 class="titulos">Formulario de Contacto...</h1>
             <form id="miFormulario" onsubmit="return validarFormulario()">
                 <label for="name">Nombre:</label>
-                <input type="text" id="name" name="user_name" required >
+                <input type="text" id="name" name="user_name"  >
                  <br>
-                 <label for="mail">Correo electrónico:</label>
-                 <input type="email" id="mail" name="user_mail" required>
+                 <label for="email">Correo electrónico:</label>
+                 <input type="email" id="email" name="user_mail" >
                  <br>
                  <label for="tipo-m">Selecciona un tipo de mensaje</label>
                  <select name="tipo-m" id="tipo-m">
@@ -62,14 +62,14 @@
     </footer>
 <script>
       function validarFormulario(){
-    let nombre=document.getElementById("name").value;
-    let correoe=document.getElementById("email").value;
-document.write(nombre);
-document.write(correoe);
-    if(nombre==""||correoe==""){
-        alert("Por favor, no dejes campos vacios!")
-        return false;
-    }
+           let name=document.getElementById("name").value;
+           let email=document.getElementById("email").value;
+           if(name==""||email==""){
+                alert("Por favor, no dejes campos vacios!")
+             return false;
+             }
+    document.write(name);
+    document.write(email);
      return true;   
 }
     </script>
