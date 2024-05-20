@@ -71,8 +71,10 @@ p{
 
 .videoteca-grid{
 display:grid;
-grid-template-columns: reoeat(4,1fr);
+grid-template-areas: repeat(2,1fr);
 gap:5px;
+grid-template-rows: 5
+grid-template-columns: 5;
 }
 
 .tarjeta-video-grid{
