@@ -69,8 +69,17 @@ p{
     text-align: center;
 }
 
-.videoteca-grid
+.videoteca-grid{
+display:grid;
+grid-template-columns: reoeat(4,1fr);
+gap:5px;
+}
 
+.tarjeta-video-grid{
+padding:5px;
+border:2px dotted darkred;
+
+}
 
 
 footer{
