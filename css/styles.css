@@ -70,17 +70,17 @@ p{
 }
 
 .videoteca-grid{
-display:grid;
-grid-template-areas: repeat(2,1fr);
-gap:5px;
-grid-template-rows: 5;
-grid-template-columns: 5;
+    display:grid;
+    grid-template-areas: repeat(2,1fr);
+    gap:5px;
+    grid-template-rows: 5;
+    grid-template-columns: 5;
 }
 
 .tarjeta-video-grid{
-padding:5px;
-border:2px dotted darkred;
-color:black;
+    padding:5px;
+    border:2px dotted darkred;
+    color:black;
 
 }
 
@@ -111,7 +111,7 @@ img {
   }
   
 #banner-ing-elec {
-max-width:fit-content;
+    max-width:fit-content;
     height: 100vh;
     object-fit: cover;
 }
@@ -137,9 +137,9 @@ padding:0px;
 }
 
 input, textarea{
- background-color: aquamarine;  
- border-style: solid; 
- border-color: aqua;
+    background-color: aquamarine;  
+    border-style: solid; 
+    border-color: aqua;
 }
 
 .custom-button{
