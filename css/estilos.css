@@ -1,14 +1,14 @@
 *{
     box-sizing: border-box;
 }
-.grid-container{
+.videoteca-grid{
     display:grid;
     grid-template-columns: repeat(3,1fr);
     grid-template-rows: repeat(3,100px);
     gap: 10px;
 
 }
-.item{
+.tarjeta-video-grid{
     background-color: aquamarine;
     color: #fff;
     text-align: center;
