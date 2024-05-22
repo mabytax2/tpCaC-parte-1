@@ -23,6 +23,10 @@ h1{
     font-style: italic;  
     text-align: center;
 }
+h3{
+    color: black;
+}
+
 .container{
     display: flex;
 }
