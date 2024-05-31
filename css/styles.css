@@ -16,6 +16,7 @@ header{
 
 }
 
+
 h1{
     color:crimson;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -96,15 +97,23 @@ footer{
 
 a:hover{
     color:darkgreen;
+    text-decoration-color: blueviolet;
 }
-
+a{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.miEnlace:hover{
+    font-family: cursive;
+    font-size: small;
+}
+/* 
 a:visited{
     color:gray;
 }
 
 a:link{
     color:blue;
-}
+} */
 
 *{
     box-sizing: border-box;
