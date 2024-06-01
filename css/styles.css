@@ -101,13 +101,13 @@ p{
   }
   
 
-/* 
+ 
 
 footer{
-    background-color: lightpink;
-    color:darkviolet;
+     background-color:magenta;
+    color:darkorange;
     font-size: small;
-} */
+} 
 
 a:hover{
     color:darkgreen;
