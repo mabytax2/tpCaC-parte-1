@@ -3,16 +3,16 @@
     border: 0;
     padding: 0%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: antiquewhite;
+    background-color: lightgeen;
 }
 
 body{
     color:black;
-    background-color: bisque;
+    background-color:lightgreen;
 }
 
 header{
- background-color: blueviolet;   
+ background-color: darkgreen;   
 
 }
 
@@ -88,12 +88,26 @@ p{
 
 }
 
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height:fit-content;
+    background-color: green;
+    color: red;
+    text-align: center;
+    padding: 0px;
+  }
+  
+
+/* 
 
 footer{
     background-color: lightpink;
     color:darkviolet;
     font-size: small;
-}
+} */
 
 a:hover{
     color:darkgreen;
@@ -104,7 +118,7 @@ a{
 }
 .miEnlace:hover{
     font-family: cursive;
-    font-size: small;
+    font-size: smaller;
 }
 /* 
 a:visited{
@@ -225,8 +239,8 @@ li{
 @media only screen and (max-width: 600px) {
    
     header{
-        color:green;
-        background-color: rgb(206, 148, 73);
+        color: white;
+        /* background-color: rgb(206, 148, 73); */
     }
     .content {
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -243,7 +257,7 @@ li{
 @media only screen and (min-width: 600px) {
     header{
         color:black;
-        background-color: gray;
+        /* background-color: gray; */
     }
     .content {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -252,7 +266,7 @@ li{
     }
     footer{
         font-family:cursive;
-        background-color: rgb(248, 87, 221);
+        background-color: rgb(248, 87, 221); 
         color:blue;
         font-size:larger;
     }
