@@ -35,9 +35,12 @@ h1{
 h3{
     color: black;
 }
-
+.custom-h3{
+    font-size: small;
+}
 .container{
     display: flex;
+    /* align-items: flex-start; */
 }
 
 .content{
@@ -171,7 +174,8 @@ img {
   
 .banner-ing-elec {
     max-width:fit-content;
-    height: fit-content;
+    height:auto;
+    /* height: fit-content; */
     object-fit: cover;
 }
   
@@ -255,7 +259,7 @@ li{
       color:crimson;
       padding: 20px;
     }
-    footer{
+   . footer{
         font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         background-color: darkmagenta;
         color:green;
@@ -272,7 +276,7 @@ li{
       color:blueviolet;
       padding: 20px;
     }
-    footer{
+   . footer{
         font-family:cursive;
         background-color: rgb(248, 87, 221); 
         color:blue;
