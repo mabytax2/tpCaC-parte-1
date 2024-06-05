@@ -41,22 +41,22 @@ h3{
     font-size: small;
 }
 .container{
-    display: flex;
-    /* align-items: flex-start; */
-    /* display: flex; */
-    
+        display: flex; 
+        width: fit-content;
  }
      
 
 .content{
-    flex-grow: 1;   
+    /* flex-grow: 1;    */
+    display:flex;
 }
 
-.columna{
-    flex: 1;     
+.columna{    
     justify-content: left;
-    align-items: left; 
-    margin-right: 10px;
+    align-items: flex-start; 
+    margin-right: 0px;
+    margin-left: 0px;
+    padding:0px;
 }
 
 
@@ -182,10 +182,11 @@ img {
   }
   
 .banner-ing-elec {
-    max-width:fit-content;
-    height:auto;
-    /* height: fit-content; */
+    max-width:50%;
+    height:100vh;    
     object-fit: cover;
+    margin:0px;
+
 }
   
 
@@ -235,6 +236,16 @@ input, textarea{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
 
 }
+
+table {
+    border-collapse: collapse;
+    width:fit-content;
+}
+    td {
+    padding: 10px;
+}
+
+
 
 li{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
