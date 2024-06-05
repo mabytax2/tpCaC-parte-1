@@ -4,6 +4,8 @@
     padding: 0%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: lightgeen;
+    box-sizing: border-box;
+    
 }
 
 body{
@@ -41,15 +43,24 @@ h3{
 .container{
     display: flex;
     /* align-items: flex-start; */
-}
+    /* display: flex; */
+    
+ }
+     
 
 .content{
     flex-grow: 1;   
 }
 
 .columna{
-    flex: 1;    
+    flex: 1;     
+    justify-content: left;
+    align-items: left; 
+    margin-right: 10px;
 }
+
+
+
 /* @import url('https://fonts.googleapis.com/css2?family=Jacquard+24+Charted&display=swap'); */
 p{ 
     color: red; 
@@ -140,9 +151,7 @@ a:link{
     color:blue;
 } */
 
-*{
-    box-sizing: border-box;
-}
+
 .videoteca-grid{
     display:grid;
     grid-template-columns: repeat(3,1fr);
@@ -226,60 +235,82 @@ input, textarea{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
 
 }
+
 li{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
+
+
  @media only screen and (max-width: 300px) { 
     header{
-        color:green;
-        background-color: lightgray;
+        height: 20%;
+        color:white;
+        background-color: green;
+        font-size: small;
     }
    
-    .content {
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    main{
+        font-family: 'Times New Roman', Times, serif;
       color:black ;
-      padding: 20px;
+      padding: 5px;
+      font-size: smaller;
+    }
+    .menu{
+        font-size: smaller;
     }
     footer{
-        font-family:fantasy;
+        font-family:fantasyar;
         background-color: red;
         color:darkorange;
-        font-size:medium;
+        font-size:smaller;
     }
   }
   
 @media only screen and (max-width: 600px) {
    
     header{
+        height: 25%;
         color: white;
-        /* background-color: rgb(206, 148, 73); */
+        background-color: green; 
+        font-size:medium;
     }
-    .content {
-        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    main{
+        font-family: Arial, Helvetica, sans-serif;
       color:crimson;
-      padding: 20px;
+      padding: 15px;
+      font-size: small;
+      
     }
-   . footer{
+    .menu{
+        font-size: small; 
+    }
+   footer{
         font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         background-color: darkmagenta;
         color:green;
-        font-size: large;
+        font-size: small;
     }
   }
 @media only screen and (min-width: 600px) {
     header{
+        height: 30%;
         color:black;
-        /* background-color: gray; */
+        background-color: green; 
+        font-size:large;
     }
-    .content {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    main{
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color:blueviolet;
       padding: 20px;
+      font-size: medium;
     }
-   . footer{
+    .menu{
+        font-size: medium;
+    }
+   footer{
         font-family:cursive;
         background-color: rgb(248, 87, 221); 
         color:blue;
-        font-size:larger;
+        font-size:medium;
     }
   } 
