@@ -242,19 +242,19 @@ table {
     margin-top: 0cm;
     margin-bottom: 0cm;
 }
-th{
+/* th{
     border: darkblue;
     border-style: solid;  
-}
-tr{
+} */
+/* .custom-tr{
     border: darkblue;
     border-style: solid;   
-}
-td {
-    /* padding: 1px; */
+} */
+/* td {
+    /* padding: 1px; 
     border: darkblue;
     border-style: solid;
-}
+} */
 
 li{
     font-family:Verdana, Geneva, Tahoma, sans-serif;

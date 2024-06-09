@@ -34,7 +34,7 @@ with open("tabla1.html", "w") as archivo_html:
     @import url('https://fonts.googleapis.com/css2?family=Jacquard+24+Charted&display=swap');
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-xrR+xx+K1uOoW3pXs9b2D7FjO8j4lYi6kKxX+2Z7yZ7z9IfwL1gk7bDySv+5zv1U" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/estilos.css">
     <script src="https://kit.fontawesome.com/28d049d17c.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -54,13 +54,13 @@ with open("tabla1.html", "w") as archivo_html:
     <br><br><br><br>
     <h1 class="titulos">Registros de la Tabla</h1>
     <table class="tabla">
-    <tr class="fila">
-    <th>ID</th>
-    <th>Descripcion</th>
-    <th>Idioma</th>
-    <th>Tipo</th>
-    <th>ubicacion</th>
-    <th>Instrumento asociado</th>
+    <tr class="custom-tr">
+    <th class="custom-th">ID</th>
+    <th class="custom-th">Descripcion</th>
+    <th class="custom-th">Idioma</th>
+    <th class="custom-th">Tipo</th>
+    <th class="custom-th">ubicacion</th>
+    <th class="custom-th">Instrumento asociado</th>
     </tr>
     """)
     
