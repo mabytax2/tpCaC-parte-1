@@ -31,8 +31,9 @@ h1{
     color:crimson;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: larger;
-    font-style: italic;  
+    font-style:normal;  
     text-align: center;
+    font-weight: bold;
 }
 
 h3{
@@ -135,6 +136,7 @@ a:hover{
     color:darkgreen;
     text-decoration-color: blueviolet;
 }
+
 a{
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -142,15 +144,6 @@ a{
     font-family: cursive;
     font-size: smaller;
 }
-/* 
-a:visited{
-    color:gray;
-}
-
-a:link{
-    color:blue;
-} */
-
 
 .videoteca-grid{
     display:grid;
@@ -208,12 +201,14 @@ padding:0px;
     font-weight: 400;
     font-style: normal;
     font-size: 20px;
+    margin-bottom: 0px;
 }
 
 input, textarea{
     background-color: aquamarine;  
     border-style: solid; 
     border-color: aqua;
+    color:blue;
 }
 
 .custom-button{
@@ -241,8 +236,24 @@ table {
     width:fit-content;
 }
 
+.tabla{
+    border: darkblue;
+    border-style: solid;
+    margin-top: 0cm;
+    margin-bottom: 0cm;
+}
+th{
+    border: darkblue;
+    border-style: solid;  
+}
+tr{
+    border: darkblue;
+    border-style: solid;   
+}
 td {
-    padding: 10px;
+    /* padding: 1px; */
+    border: darkblue;
+    border-style: solid;
 }
 
 li{
