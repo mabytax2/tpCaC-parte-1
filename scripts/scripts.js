@@ -13,8 +13,8 @@ function validarFormulario(){
 
 fileInput.addEventListener('change', function() {
           const file = fileInput.files[0];
-          // Aquí puedes procesar el archivo, por ejemplo, mostrar su nombre o tamaño
           console.log('Archivo seleccionado:', file.name, file.size);
-          // También puedes enviar el archivo a través de una petición HTTP a tu servidor
+         
       });
  }
+
