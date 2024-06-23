@@ -23,7 +23,25 @@
         
         <img class="banner-ing-elec" src="./img/unlam banner vertical.jpg" alt="Ingenieria Electronica">
     </div>
+    
+
     <div class="column">
+    
+        <form action="/alterar" method="post,get">
+            <br><br><br><br>
+            <label for=>
+            <input type="text" name="ID" placeholder="ID">
+            <input type="text" name="descripcion" placeholder="descripcion">
+            <input type="text" name="idioma" placeholder="idioma">
+            <input type="text" name="tipo" placeholder="tipo">
+            <input type="text" name="ubicacion" placeholder="ubicacion">
+            <input type="text" name="instAsociado" placeholder="Imstrumento asociado">
+        
+            <!-- Botones -->
+            <br><br><br><br>
+            <button type="submit" name="accion" value="modificar">Modificar</button>
+            <button type="submit" name="accion" value="eliminar">Eliminar</button>
+        </form>
         
     </div>
 </div>
@@ -32,3 +50,4 @@
 </body>
 
 </html>
+
