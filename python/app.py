@@ -14,16 +14,24 @@ db=mysql.connector.connect(
 cursor = db.cursor()
 
 @app.route('/cargar', methods=['GET', 'POST'])
-def cargar_datos():
+def cargarDatos():
        # Lógica para cargar datos en la base de datos
        return 'Formulario de carga de datos'
 
-@app.route('/modificar', methods=['GET', 'POST'])
-def modificar_datos():
+@app.route('/alterar', methods=['GET', 'POST'])
+def cambiarDatos(id):
        # Lógica para modificar datos en la base de datos
        return 'Formulario de modificación de datos'
 
 @app.route('/eliminar', methods=['GET', 'POST'])
-def eliminar_datos():
+def borrarDatos(id):
        # Lógica para eliminar datos de la base de datos
        return 'Formulario de eliminación de datos'
+
+
+@app.route('/accion', methods=['POST'])
+def accion():
+    if request.form['accion'] == 'modificar':
+        cambiarDatos(id)
+    elif request.form['accion'] == 'eliminar':
+        borrarDatos(id)

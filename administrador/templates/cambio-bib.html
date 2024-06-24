@@ -15,13 +15,13 @@
 </head>
 <body>
     <header class="header">
-        <a href="./index.html"><img src="./img/letra-e.gif " height="50px" width="50px" alt="">Home</a> 
+        <a href="./index.html"><img src="../../img/gif_unlam.gif" alt="gif unlam" height="50px" width="50px">Home</a> 
     </header>
     <main>
 <div class="container">
     <div class="column">
         
-        <img class="banner-ing-elec" src="./img/unlam banner vertical.jpg" alt="Ingenieria Electronica">
+        <img class="banner-ing-elec" src="../../img/unlam banner vertical.jpg" alt="Ingenieria Electronica">
     </div>
     
 
@@ -29,21 +29,34 @@
     
         <form action="/alterar" method="post,get">
             <br><br><br><br>
-            <label for=>
+            <label for="ID">Identificador</label>
             <input type="text" name="ID" placeholder="ID">
+            <br>
+            <label for="descripcion">Descripción</label>
             <input type="text" name="descripcion" placeholder="descripcion">
+            <br>
+            <label for="idioma">Idioma</label>
             <input type="text" name="idioma" placeholder="idioma">
+            <br>
+            <label for="tipo">Tipo</label>
             <input type="text" name="tipo" placeholder="tipo">
+            <br>
+            <label for="ubicacion">Ubicación</label>
             <input type="text" name="ubicacion" placeholder="ubicacion">
-            <input type="text" name="instAsociado" placeholder="Imstrumento asociado">
+            <br>
+            <label for="instAsociado">Instrumento Asociado</label>
+            <input type="text" name="instAsociado" placeholder="Instrumento asociado">
         
             <!-- Botones -->
             <br><br><br><br>
-            <button type="submit" name="accion" value="modificar">Modificar</button>
-            <button type="submit" name="accion" value="eliminar">Eliminar</button>
+            <button type="submit" name="cambiarDato" value="modificar">Modificar</button>
+            <button type="submit" name="borrarDato" value="eliminar">Eliminar</button>
+            <br><br>
+            <a href='../administrador/index_admin.html'>Atras</a>
         </form>
         
     </div>
+</div>
 </div>
     </main>
     <footer class="footer">Hecho por maria alejandra balmaceda</footer>
