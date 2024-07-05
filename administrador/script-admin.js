@@ -9,3 +9,4 @@ document.getElementById("loginForm").addEventListener("submit", function() {
     alert("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
     }
     });
+    
