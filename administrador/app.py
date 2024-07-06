@@ -1,7 +1,8 @@
+#from multiprocessing.connection import Connection
 from flask import Flask, render_template, request
 
 
-
+#Connection.close()
 
 import pymysql
 
@@ -101,7 +102,7 @@ def libros():
 @app.route('/instrumentos', methods=['GET', 'POST'])
 def instrumentos():
     if request.method == 'GET':
-        instrumentos = leer_instrumentos()  # Función para leer todos los instrumentos
+        instrumentos = leer_todos_instrumentos()  # Función para leer todos los instrumentos
         return render_template('instrumentos.html', instrumentos=instrumentos)
     elif request.method == 'POST':
         # Procesar el formulario para crear un nuevo instrumento
@@ -125,3 +126,5 @@ def instrumentos():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
+    connection.close()
