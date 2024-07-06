@@ -124,6 +124,54 @@ def instrumentos():
         crear_instrumento(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificaciones, estado, ubicacion, adicionales,fecha_ingreso)  # Función para crear un nuevo instrumento
         return "Instrumento creado exitosamente"
 
+@app.route('/notebooks', methods=['GET', 'POST'])
+def notebooks():
+    if request.method == 'GET':
+        notebooks = leer_todos_notebooks()  # Función para leer todos las notebooks
+        return render_template('notebooks.html', notebooks=notebooks)
+    elif request.method == 'POST':
+        # Procesar el formulario para crear un nuevo instrumento
+        nro_inv = request.form['nro_inv']
+        cod_rec = request.form['cod_rec']
+        marca = request.form['marca']
+        modelo = request.form['modelo']
+        sn = request.form['sn']
+        estado = request.form['estado']
+        ubicacion = request.form['ubicacion']
+        vga = request.form['vga']
+        hdmi = request.form['hdmi']
+        s_op = request.form['s_op']
+        adicionales = request.form['adicionales']
+        fecha_ingreso = request.form['fecha_ingreso']
+        lectora_dvd = request.form['lectora_dvd']
+      
+        crear_notebook(nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, vga, hdmi, s_op, adicionales, lectora_dvd, fecha_ingreso )  # Función para crear un nuevo instrumento
+        return "Notebook creada exitosamente"
+    
+@app.route('/proyectores', methods=['GET', 'POST'])
+def proyectores():
+    if request.method == 'GET':
+        proyectores = leer_todos_proyectores()  # Función para leer todos los proyectores
+        return render_template('proyectores.html', proyectores=proyectores)
+    elif request.method == 'POST':
+        # Procesar el formulario para crear un nuevo proyector
+        nro_inv = request.form['nro_inv']
+        cod_rec = request.form['cod_rec']
+        tipo = request.form['tipo']
+        descripcion = request.form['descripcion']
+        marca = request.form['marca']
+        modelo = request.form['modelo']
+        sn = request.form['sn']
+        ab_rango = request.form['ab_rango']
+        cod_manual = request.form['cod_manual']
+        especificaciones = request.form['especificaciones']
+        estado = request.form['estado']
+        ubicacion = request.form['ubicacion']
+        adicionales = request.form['adicionales']
+        fecha_ingreso = request.form['fecha_ingreso']
+      
+        crear_proyector(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificaciones, estado, ubicacion, adicionales,fecha_ingreso)  # Función para crear un nuevo instrumento
+        return "proyector creado exitosamente"
 if __name__ == '__main__':
     app.run(debug=True)
     
