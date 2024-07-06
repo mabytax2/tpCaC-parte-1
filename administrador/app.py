@@ -4,6 +4,7 @@ from flask import Flask, render_template, request
 
 
 import pymysql
+
 connection=pymysql.connect(
     host='localhost',
     user='root',
@@ -43,9 +44,9 @@ def eliminar_libro(id):
 
 #################### tabla instrumentos#########################
 #crear instrumento
-def crear_instrumento(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificacioes, estado, ubicacion, adicionales,fecha_ingreso):
-    sql="INSERT INTO instrumentos (nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificacioes, estado, ubicacion, adicionales,fecha_ingreso) VALUES (%,%,%,%,%,%,%,%,%,%,%,%,%,%)"
-    cursor.execute(sql,(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificacioes, estado, ubicacion, adicionales,fecha_ingreso))
+def crear_instrumento(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificaciones, estado, ubicacion, adicionales,fecha_ingreso):
+    sql="INSERT INTO instrumentos (nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificaciones, estado, ubicacion, adicionales,fecha_ingreso) VALUES (%,%,%,%,%,%,%,%,%,%,%,%,%,%)"
+    cursor.execute(sql,(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificaciones, estado, ubicacion, adicionales,fecha_ingreso))
     connection.commit()
     return cursor.lastrowid
 
@@ -57,9 +58,9 @@ def leer_todos_instrumentos():
     return instrumentose
 
 # actualizar instrumentos
-def actualizar_instrumentos(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificacioes, estado, ubicacion, adicionales,fecha_ingreso):
-    sql="UPDATE instrumentos SET nro_inv=%,cod_rec=%,tipo=%,descripcion=%,marca=%,modelo=%,sn=%,ab_rango=%,cod_manual=%, especificacioes=%, estado=%, ubicacion=%, adicionales=%,fecha_ingreso=%"
-    cursor.execute(sql,(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificacioes, estado, ubicacion, adicionales,fecha_ingreso))
+def actualizar_instrumentos(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificaciones, estado, ubicacion, adicionales,fecha_ingreso):
+    sql="UPDATE instrumentos SET nro_inv=%,cod_rec=%,tipo=%,descripcion=%,marca=%,modelo=%,sn=%,ab_rango=%,cod_manual=%, especificaciones=%, estado=%, ubicacion=%, adicionales=%,fecha_ingreso=%"
+    cursor.execute(sql,(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificaciones, estado, ubicacion, adicionales,fecha_ingreso))
     connection.commit()
     return "Instrumento actualizado con exito!!!!"
 
@@ -85,11 +86,14 @@ def libros():
         return render_template('listar-bib.html', libros=libros)
     elif request.method == 'POST':
         # Procesar el formulario para crear un nuevo libro
+        id = request.form['id']
         descripcion = request.form['descripcion']
-        autor = request.form['autor']
-        editorial = request.form['editorial']
+        idioma = request.form['idioma']
+        tipo = request.form['tipo']
         ubicacion = request.form['ubicacion']
-        crear_libro(descripcion, autor, editorial, ubicacion)  # Función para crear un nuevo libro
+        instrumento_asociado = request.form['instrumento_asociado']
+        
+        crear_libro(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado)  # Función para crear un nuevo libro
         return "Libro creado exitosamente"
 
 
@@ -101,11 +105,22 @@ def instrumentos():
         return render_template('instrumentos.html', instrumentos=instrumentos)
     elif request.method == 'POST':
         # Procesar el formulario para crear un nuevo instrumento
-        descripcion = request.form['descripcion']
+        nro_inv = request.form['nro_inv']
+        cod_rec = request.form['cod_rec']
         tipo = request.form['tipo']
-        codigo_manual = request.form['codigo_manual']
+        descripcion = request.form['descripcion']
+        marca = request.form['marca']
+        modelo = request.form['modelo']
+        sn = request.form['sn']
+        ab_rango = request.form['ab_rango']
+        cod_manual = request.form['cod_manual']
+        especificaciones = request.form['especificaciones']
+        estado = request.form['estado']
         ubicacion = request.form['ubicacion']
-        crear_instrumento(descripcion, tipo, codigo_manual, ubicacion)  # Función para crear un nuevo instrumento
+        adicionales = request.form['adicionales']
+        fecha_ingreso = request.form['fecha_ingreso']
+      
+        crear_instrumento(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificaciones, estado, ubicacion, adicionales,fecha_ingreso)  # Función para crear un nuevo instrumento
         return "Instrumento creado exitosamente"
 
 if __name__ == '__main__':
