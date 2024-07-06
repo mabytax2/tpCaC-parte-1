@@ -1,74 +1,112 @@
-import mysql.connector
+from flask import Flask, render_template, request
 
 
-conexion = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="labelec"
+
+
+import pymysql
+connection=pymysql.connect(
+    host='localhost',
+    user='root',
+    password='',
+    database='unlamdb'
 )
+cursor=connection.cursor()
 
-cursor = conexion.cursor()
+################tabla libros#########################
+#crear libro
+def crear_libro(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado):
+    sql="INSERT INTO libros (id,descripcion, idioma,tipo, ubicacion,instrumento_asociado) VALUES (%,%,%,%,%,%)"
+    cursor.execute(sql,(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado))
+    connection.commit()
+    return cursor.lastrowid
 
-tabla = "libros"
-consulta = f"SELECT * FROM {tabla}"
+# leer todos los libros
+def leer_todos_libros():
+    sql="SELECT * FROM libros"
+    cursor.execute(sql)
+    librose=cursor.fetchall()
+    return librose
+
+# actualizar libros
+def actualizar_libro(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado):
+    sql="UPDATE libros SET id=%, descripcion=%, idioma=%, tipo=%, ubicacion=%, instrumento_asociado=%"
+    cursor.execute(sql,(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado))
+    connection.commit()
+    return "Libro actualizado con exito!!!!"
+
+# eliminar libro
+def eliminar_libro(id):
+    sql="DELETE FROM libros WHERE id=%"
+    cursor.execute(sql,(id))
+    connection.commit()
+    return "Libro borrado con exito!!!"
+
+#################### tabla instrumentos#########################
+#crear instrumento
+def crear_instrumento(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificacioes, estado, ubicacion, adicionales,fecha_ingreso):
+    sql="INSERT INTO instrumentos (nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificacioes, estado, ubicacion, adicionales,fecha_ingreso) VALUES (%,%,%,%,%,%,%,%,%,%,%,%,%,%)"
+    cursor.execute(sql,(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificacioes, estado, ubicacion, adicionales,fecha_ingreso))
+    connection.commit()
+    return cursor.lastrowid
+
+# leer todos los instrumentos
+def leer_todos_instrumentos():
+    sql="SELECT * FROM instrumentos"
+    cursor.execute(sql)
+    instrumentose=cursor.fetchall()
+    return instrumentose
+
+# actualizar instrumentos
+def actualizar_instrumentos(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificacioes, estado, ubicacion, adicionales,fecha_ingreso):
+    sql="UPDATE instrumentos SET nro_inv=%,cod_rec=%,tipo=%,descripcion=%,marca=%,modelo=%,sn=%,ab_rango=%,cod_manual=%, especificacioes=%, estado=%, ubicacion=%, adicionales=%,fecha_ingreso=%"
+    cursor.execute(sql,(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificacioes, estado, ubicacion, adicionales,fecha_ingreso))
+    connection.commit()
+    return "Instrumento actualizado con exito!!!!"
+
+# eliminar instrumentos
+def eliminar_instrumento(nro_inv):
+    sql="DELETE FROM instrumentos WHERE nro_inv=%"
+    cursor.execute(sql,(nro_inv))
+    connection.commit()
+    return "instrumento borrado con exito!!!"
+
+#################################################
+#copiar para las otras tablas 
+##################################################
+
+#crud libros
+
+app = Flask(__name__)
+
+@app.route('/libros', methods=['GET', 'POST'])
+def libros():
+    if request.method == 'GET':
+        libros = leer_todos_libros()  # Función para leer todos los libros
+        return render_template('listar-bib.html', libros=libros)
+    elif request.method == 'POST':
+        # Procesar el formulario para crear un nuevo libro
+        descripcion = request.form['descripcion']
+        autor = request.form['autor']
+        editorial = request.form['editorial']
+        ubicacion = request.form['ubicacion']
+        crear_libro(descripcion, autor, editorial, ubicacion)  # Función para crear un nuevo libro
+        return "Libro creado exitosamente"
 
 
-cursor.execute(consulta)
 
-# Obtener todos los resultados de la consulta
-resultados = cursor.fetchall()
+@app.route('/instrumentos', methods=['GET', 'POST'])
+def instrumentos():
+    if request.method == 'GET':
+        instrumentos = leer_instrumentos()  # Función para leer todos los instrumentos
+        return render_template('instrumentos.html', instrumentos=instrumentos)
+    elif request.method == 'POST':
+        # Procesar el formulario para crear un nuevo instrumento
+        descripcion = request.form['descripcion']
+        tipo = request.form['tipo']
+        codigo_manual = request.form['codigo_manual']
+        ubicacion = request.form['ubicacion']
+        crear_instrumento(descripcion, tipo, codigo_manual, ubicacion)  # Función para crear un nuevo instrumento
+        return "Instrumento creado exitosamente"
 
-# Mostrar los datos de la tabla
-#for fila in resultados:
-    # print(fila)
-    #
-    
-with open("tabla1.html", "w") as archivo_html:
-    archivo_html.write("""
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base de Datos</title>
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Jacquard+24+Charted&display=swap');
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-xrR+xx+K1uOoW3pXs9b2D7FjO8j4lYi6kKxX+2Z7yZ7z9IfwL1gk7bDySv+5zv1U" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/estilos.css">
-    <script src="https://kit.fontawesome.com/28d049d17c.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
-    <header class="header">
-    <a href="./index.html">
-    <img src="./img/letra-e.gif " height="50px" width="50px" alt="">
-    Home
-    </a>
-    </header>
-    <main>
-    <div class="container">
-    <div class="column">
-    <br>
-    <img class="banner-ing-elec" src="./img/unlam banner vertical.jpg" alt="Ingenieria Electronica">
-    </div>
-    <div class="column">
-    <br><br><br><br>
-    <h1 class="titulos">Registros de la Tabla</h1>
-    <table class="tabla">
-    <tr class="custom-tr">
-    <th class="custom-th">ID</th>
-    <th class="custom-th">Descripcion</th>
-    <th class="custom-th">Idioma</th>
-    <th class="custom-th">Tipo</th>
-    <th class="custom-th">ubicacion</th>
-    <th class="custom-th">Instrumento asociado</th>
-    </tr>
-    """)
-    
-    for fila in resultados:
-        archivo_html.write(f"<tr><td>{fila[0]}</td><td>{fila[1]}</td><td>{fila[2]}</td><td>{fila[3]}</td><td>{fila[4]}</td><td>{fila[5]}</td><br></tr>")
-    archivo_html.write("</table></div></body></html>")
-
-print("Archivo HTML generado con los registros de la tabla.")
-
-cursor.close()
-conexion.close()
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Libros de Electrónica</title>
+</head>
+<body>
+    <h1>Lista de Libros de Electrónica</h1>
+    <ul>
+        {% for libro in libros %}
+            <li>{{ libro.descripcion }} - {{ libro.autor }} - {{ libro.editorial }} - {{ libro.ubicacion }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
