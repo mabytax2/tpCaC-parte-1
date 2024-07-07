@@ -39,7 +39,11 @@ def buscar_libro(id):
     sql="select * from libros where id=%"
     cursor.execute(sql, (id))
     libro = cursor.fetchone()
-    return libro
+    if libro:
+        return libro
+    else:
+        return "Libro no encontrado"
+
 
 # eliminar libro
 def eliminar_libro(id):
@@ -75,7 +79,10 @@ def buscar_instrumento(nro_inv):
     sql="select * from instrumentos where nro_inv=%"
     cursor.execute(sql, (nro_inv))
     instrumento = cursor.fetchone()
-    return instrumento
+    if instrumento:
+        return instrumento
+    else:
+        return "Instrumento no encontrado"
 
 
 
@@ -121,7 +128,10 @@ def buscar_proyector(nro_inv):
     sql="select * from proyectores where nro_inv=%"
     cursor.execute(sql, (nro_inv))
     proyector = cursor.fetchone()
-    return proyector
+    if proyector:
+        return proyector
+    else:
+        return "Proyector no encontrado"
 
 #################### tabla notebooks#########################
 # Crear notebook
@@ -150,14 +160,17 @@ def buscar_notebook(nro_inv):
     sql="select * from notebooks where nro_inv=%"
     cursor.execute(sql, (nro_inv))
     notebook = cursor.fetchone()
-    return notebook
+    if notebook:
+        return notebook
+    else:
+        return "Notebook no encontrada"
 
 # Eliminar notebooks
 def eliminar_notebook(nro_inv):
     sql = "DELETE FROM notebooks WHERE nro_inv=%"
     cursor.execute(sql, (nro_inv,))
     connection.commit()
-    return "Notebook borrado con éxito!"
+    return "Notebook borrada con éxito!"
 
 
 
