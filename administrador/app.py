@@ -2,7 +2,7 @@
 from flask import Flask, render_template, request
 
 
-#Connection.close()
+
 
 import pymysql
 
@@ -72,9 +72,67 @@ def eliminar_instrumento(nro_inv):
     connection.commit()
     return "instrumento borrado con exito!!!"
 
-#################################################
-#copiar para las otras tablas 
-##################################################
+  #################### tabla proyectores #########################
+
+    # Crear proyector 
+def crear_proyector(nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_ingreso, vga, hdmi, adicionales):
+    sql = "INSERT INTO proyectores (nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_ingreso, vga, hdmi, adicionales) VALUES (%, %, %, %, %, %, %, %, %, %, %)"
+    cursor.execute(sql, (nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_ingreso, vga, hdmi, adicionales))
+    connection.commit()
+    return cursor.lastrowid
+
+# Leer todos los proyectores
+def leer_todos_proyectores():
+    sql = "SELECT * FROM proyectores"
+    cursor.execute(sql)
+    proyectorese = cursor.fetchall()
+    return proyectorese
+
+# Actualizar proyector 
+def actualizar_proyector(nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_ingreso, vga, hdmi, adicionales):
+    sql = "UPDATE proyectores SET nro_inv=%, cod_rec=%, marca=%, modelo=%, sn=%, estado=%, ubicacion=%, fecha_ingreso=%, vga=%, hdmi=%, adicionales=%"
+    cursor.execute(sql, (nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_ingreso, vga, hdmi, adicionales))
+    connection.commit()
+    return "Proyector actualizado con éxito!"
+
+# Eliminar proyector
+def eliminar_proyector(nro_inv):
+    sql = "DELETE FROM proyectores WHERE nro_inv=%"
+    cursor.execute(sql, (nro_inv,))
+    connection.commit()
+    return "Proyector borrado con éxito!"
+
+#################### tabla notebooks#########################
+# Crear notebook
+def crear_notebook(nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_Ingreso, vga, hdmi, adicionales, s_op, lectora_DVD):
+    sql = "INSERT INTO notebooks (nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_Ingreso, vga, hdmi, s_op, adicionales, lectora_DVD) VALUES (%, %, %, %, %, %, %, %, %, %, %, %, %)"
+    cursor.execute(sql, (nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_Ingreso, vga, hdmi, s_op, adicionales, lectora_DVD))
+    connection.commit()
+    return cursor.lastrowid
+
+# Leer todos los notebooks
+def leer_todos_notebooks():
+    sql = "SELECT * FROM notebooks"
+    cursor.execute(sql)
+    notebookse = cursor.fetchall()
+    return notebookse
+
+# Actualizar notebooks
+def actualizar_notebook(nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_Ingreso, vga, hdmi, s_op, adicionales, lectora_DVD):
+    sql = "UPDATE notebooks SET nro_inv=%, cod_rec=%, marca=%, modelo=%, sn=%, estado=%, ubicacion=%, fecha_Ingreso=%, vga=%, hdmi=%, s_op=%, adicionales=%, lectora_DVD=%"
+    cursor.execute(sql, (nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_Ingreso, vga, hdmi, s_op, adicionales, lectora_DVD))
+    connection.commit()
+    return "Notebook actualizado con éxito!"
+
+# Eliminar notebooks
+def eliminar_notebook(nro_inv):
+    sql = "DELETE FROM notebooks WHERE nro_inv=%"
+    cursor.execute(sql, (nro_inv,))
+    connection.commit()
+    return "Notebook borrado con éxito!"
+
+
+
 
 #crud libros
 
@@ -175,4 +233,4 @@ def proyectores():
 if __name__ == '__main__':
     app.run(debug=True)
     
-    connection.close()
+connection.close()

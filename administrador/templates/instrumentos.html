@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Instrumentos</title>
+</head>
+<body>
+    <h1>Lista de Instrumentos</h1>
+    <ul>
+        {% for instrumento in instrumentos %}
+            <li>
+                {{ instrumento.nro_inv}} - 
+                {{ instrumento.cod_rec }} - 
+                {{ instrumento.tipo }} - 
+                {{ instrumento.descripcion }} - 
+                {{ instrumento.marca}} - 
+                {{ instrumento.modelo }} - 
+                {{ instrumento.sn }} - 
+                {{ instrumento.ab_rango }} - 
+                {{ instrumento.cod_manual }} - 
+                {{ instrumento.especificiones}} - 
+                {{ instrumento.estado}} - 
+                {{ instrumento.ubicacion}} - 
+                {{ instrumento.adicionales}} - 
+                {{ instrumento.fecha_ingreso}}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
