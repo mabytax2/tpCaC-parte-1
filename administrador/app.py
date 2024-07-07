@@ -1,5 +1,5 @@
 #from multiprocessing.connection import Connection
-from flask import Flask, render_template, request
+from flask import Flask, redirect, render_template, request, url_for
 
 
 import pymysql
@@ -34,6 +34,13 @@ def actualizar_libro(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado
     connection.commit()
     return "Libro actualizado con exito!!!!"
 
+# buscar libros
+def buscar_libro(id):
+    sql="select * from libros where id=%"
+    cursor.execute(sql, (id))
+    libro = cursor.fetchone()
+    return libro
+
 # eliminar libro
 def eliminar_libro(id):
     sql="DELETE FROM libros WHERE id=%"
@@ -62,6 +69,15 @@ def actualizar_instrumentos(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_
     cursor.execute(sql,(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificaciones, estado, ubicacion, adicionales,fecha_ingreso))
     connection.commit()
     return "Instrumento actualizado con exito!!!!"
+
+# buscar instrumento
+def buscar_instrumento(nro_inv):
+    sql="select * from instrumentos where nro_inv=%"
+    cursor.execute(sql, (nro_inv))
+    instrumento = cursor.fetchone()
+    return instrumento
+
+
 
 # eliminar instrumentos
 def eliminar_instrumento(nro_inv):
@@ -100,6 +116,13 @@ def eliminar_proyector(nro_inv):
     connection.commit()
     return "Proyector borrado con éxito!"
 
+# buscar proyector
+def buscar_proyector(nro_inv):
+    sql="select * from proyectores where nro_inv=%"
+    cursor.execute(sql, (nro_inv))
+    proyector = cursor.fetchone()
+    return proyector
+
 #################### tabla notebooks#########################
 # Crear notebook
 def crear_notebook(nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_Ingreso, vga, hdmi, adicionales, s_op, lectora_DVD):
@@ -121,6 +144,13 @@ def actualizar_notebook(nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, 
     cursor.execute(sql, (nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_Ingreso, vga, hdmi, s_op, adicionales, lectora_DVD))
     connection.commit()
     return "Notebook actualizado con éxito!"
+
+# buscar notebook
+def buscar_notebook(nro_inv):
+    sql="select * from notebooks where nro_inv=%"
+    cursor.execute(sql, (nro_inv))
+    notebook = cursor.fetchone()
+    return notebook
 
 # Eliminar notebooks
 def eliminar_notebook(nro_inv):
@@ -153,6 +183,20 @@ def libros():
         crear_libro(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado)  # Función para crear un nuevo libro
         return "Libro creado exitosamente"
 
+# Ruta para borrar un libro
+
+@app.route('/libros/borrar/<id>', methods=['GET', 'POST'])
+def borrar_libro(id):
+    if request.method == 'POST':
+        eliminar_libro(id)
+        return redirect(url_for('libros'))  # Redirige a la lista de libros
+    else:
+        libro = buscar_libro(id)
+        if libro:
+            return render_template('confirmar_borrado.html', libro=libro)  # Renderiza una plantilla de confirmación
+        else:
+            return "Libro no encontrado"
+        
 
 
 @app.route('/instrumentos', methods=['GET', 'POST'])
@@ -183,6 +227,20 @@ def instrumentos():
     except Exception as e:
         print(f"An error occurred: {e}")
         return "Error processing request", 500
+    
+# Ruta para borrar/buscar un instrumento
+
+@app.route('/libros/borrar/<id>', methods=['GET', 'POST'])
+def borrar_libro(id):
+    if request.method == 'POST':
+        eliminar_libro(id)
+        return redirect(url_for('libros'))  # Redirige a la lista de libros
+    else:
+        libro = buscar_libro(id)
+        if libro:
+            return render_template('confirmar_borrado.html', libro=libro)  # Renderiza una plantilla de confirmación
+        else:
+            return "Libro no encontrado"
 
 @app.route('/notebooks', methods=['GET', 'POST'])
 def notebooks():
