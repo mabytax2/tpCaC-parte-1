@@ -243,17 +243,17 @@ def instrumentos():
     
 # Ruta para borrar/buscar un instrumento
 
-@app.route('/libros/borrar/<id>', methods=['GET', 'POST'])
-def borrar_libro(id):
+@app.route('/instrumento/borrar/<nro_inventario>', methods=['GET', 'POST'])
+def borrar_instrumento(nro_inv):
     if request.method == 'POST':
-        eliminar_libro(id)
-        return redirect(url_for('libros'))  # Redirige a la lista de libros
+        eliminar_instrumento(nro_inv)
+        return redirect(url_for('instrumento'))  # Redirige a la lista de instrumentos
     else:
-        libro = buscar_libro(id)
-        if libro:
-            return render_template('confirmar_borrado.html', libro=libro)  # Renderiza una plantilla de confirmación
+        instrumento = buscar_instrumento(nro_inv)
+        if instrumento:
+            return render_template('confirmar_borrado.html', instrumento=instrumento)  # Renderiza una plantilla de confirmación
         else:
-            return "Libro no encontrado"
+            return "Instrumento no encontrado"
 
 @app.route('/notebooks', methods=['GET', 'POST'])
 def notebooks():
@@ -282,6 +282,20 @@ def notebooks():
     except Exception as e:
         print(f"Ocurrio el error:  {e}")
         return "Error al procesar requerimiento", 500
+    
+    # Ruta para borrar/buscar una notebook
+
+@app.route('/notebook/borrar/<nro_inv>', methods=['GET', 'POST'])
+def borrar_notebook(nro_inv):
+    if request.method == 'POST':
+        eliminar_notebook(nro_inv)
+        return redirect(url_for('notebook'))  # Redirige a la lista de notebook
+    else:
+        notebook = buscar_notebook(nro_inv)
+        if instrumento:
+            return render_template('confirmar_borrado.html', instrumento=instrumento)  # Renderiza una plantilla de confirmación
+        else:
+            return "Instrumento no encontrado"
     
 @app.route('/proyectores', methods=['GET', 'POST'])
 def proyectores():
