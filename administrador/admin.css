@@ -1,6 +1,6 @@
 .button {
     &.comun{
-        
+        --color-hover: pink;
     }
     &.alternative {
         --color-hover: #47a13b;
@@ -32,9 +32,12 @@
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    
     -webkit-appearance: none;
+    appearance: none;
     -webkit-tap-highlight-color: transparent;
     -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: -moz-radial-gradient();
     color: var(--c, var(--color));
     background: var(--b, var(--background));
     transition: color .2s linear var(--c-d, .2s), background .3s linear var(--b-d, .2s);

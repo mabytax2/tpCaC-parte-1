@@ -1,4 +1,4 @@
-#from multiprocessing.connection import Connection
+
 from flask import Flask, redirect, render_template, request, url_for
 
 
@@ -210,7 +210,7 @@ def borrar_libro(id):
         else:
             return "Libro no encontrado"
         
-
+# Crud instrumentos
 
 @app.route('/instrumentos', methods=['GET', 'POST'])
 def instrumentos():
