@@ -1,14 +1,12 @@
-#--------------------------------------------------------------------
-# Instalar con pip install Flask
-from flask import Flask, request, jsonify, render_template
-#from flask import request
 
-# Instalar con pip install flask-cors
+from flask import Flask, redirect, render_template, request, url_for, jsonify
+
 from flask_cors import CORS
 
 # Instalar con pip install mysql-connector-python
 import mysql.connector
-
+from mysql.connector import connection
+from mysql.connector import errorcode
 # Si es necesario, pip install Werkzeug
 from werkzeug.utils import secure_filename
 
@@ -21,257 +19,349 @@ import time
 
 app = Flask(__name__)
 CORS(app)  # Esto habilitará CORS para todas las rutas
+import pymysql
 
-#--------------------------------------------------------------------
-# class Catalogo:
-#     #----------------------------------------------------------------
-#     # Constructor de la clase
-#     def __init__(self, host, user, password, database):
-#         # Primero, establecemos una conexión sin especificar la base de datos
-#         self.conn = mysql.connector.connect(
-#             host=host,
-#             user=user,
-#             password=password
-#         )
-#         self.cursor = self.conn.cursor()
+connection=pymysql.connect(
+    host='localhost',
+    user='root',
+    password='',
+    database='unlamdb'
+)
+cursor=connection.cursor()
 
-#         # Intentamos seleccionar la base de datos
-#         try:
-#             self.cursor.execute(f"USE {database}")
-#         except mysql.connector.Error as err:
-#             # Si la base de datos no existe, la creamos
-#             if err.errno == mysql.connector.errorcode.ER_BAD_DB_ERROR:
-#                 self.cursor.execute(f"CREATE DATABASE {database}")
-#                 self.conn.database = database
-#             else:
-#                 raise err
+################tabla libros#########################
+#crear libro
+def crear_libro(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado):
+    sql="INSERT INTO libros (id,descripcion, idioma,tipo, ubicacion,instrumento_asociado) VALUES (%,%,%,%,%,%)"
+    cursor.execute(sql,(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado))
+    connection.commit()
+    return cursor.lastrowid
 
-#         # Una vez que la base de datos está establecida, creamos la tabla si no existe
-#         self.cursor.execute('''CREATE TABLE IF NOT EXISTS productos (
-#             codigo INT AUTO_INCREMENT PRIMARY KEY,
-#             descripcion VARCHAR(255) NOT NULL,
-#             cantidad INT NOT NULL,
-#             precio DECIMAL(10, 2) NOT NULL,
-#             imagen_url VARCHAR(255),
-#             proveedor INT(4))''')
-#         self.conn.commit()
+# leer todos los libros
+def leer_todos_libros():
+    sql="SELECT * FROM libros"
+    cursor.execute(sql)
+    libros=cursor.fetchall()
+    return libros
 
-        # Cerrar el cursor inicial y abrir uno nuevo con el parámetro dictionary=True
-    # self.cursor.close()
-    #     self.cursor = self.conn.cursor(dictionary=True)
+# actualizar libros
+def actualizar_libro(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado):
+    sql="UPDATE libros SET id=%, descripcion=%, idioma=%, tipo=%, ubicacion=%, instrumento_asociado=%"
+    cursor.execute(sql,(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado))
+    connection.commit()
+    return "Libro actualizado con exito!!!!"
+
+# buscar libros
+def buscar_libro(id):
+    sql="select * from libros where id=%"
+    cursor.execute(sql, (id))
+    libro = cursor.fetchone()
+    if libro:
+        return libro
+    else:
+        return "Libro no encontrado"
+
+
+# eliminar libro
+def eliminar_libro(id):
+    sql="DELETE FROM libros WHERE id=%"
+    cursor.execute(sql,(id))
+    connection.commit()
+    return "Libro borrado con exito!!!"
+
+#################### tabla instrumentos#########################
+#crear instrumento
+def crear_instrumento(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificaciones, estado, ubicacion, adicionales,fecha_ingreso):
+    sql="INSERT INTO instrumentos (nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificaciones, estado, ubicacion, adicionales,fecha_ingreso) VALUES (%,%,%,%,%,%,%,%,%,%,%,%,%,%)"
+    cursor.execute(sql,(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificaciones, estado, ubicacion, adicionales,fecha_ingreso))
+    connection.commit()
+    return cursor.lastrowid
+
+# leer todos los instrumentos
+def leer_todos_instrumentos():
+    sql="SELECT * FROM instrumentos"
+    cursor.execute(sql)
+    instrumentose=cursor.fetchall()
+    return instrumentose
+
+# actualizar instrumentos
+def actualizar_instrumentos(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificaciones, estado, ubicacion, adicionales,fecha_ingreso):
+    sql="UPDATE instrumentos SET nro_inv=%,cod_rec=%,tipo=%,descripcion=%,marca=%,modelo=%,sn=%,ab_rango=%,cod_manual=%, especificaciones=%, estado=%, ubicacion=%, adicionales=%,fecha_ingreso=%"
+    cursor.execute(sql,(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificaciones, estado, ubicacion, adicionales,fecha_ingreso))
+    connection.commit()
+    return "Instrumento actualizado con exito!!!!"
+
+# buscar instrumento
+def buscar_instrumento(nro_inv):
+    sql="select * from instrumentos where nro_inv=%"
+    cursor.execute(sql, (nro_inv))
+    instrumento = cursor.fetchone()
+    if instrumento:
+        return instrumento
+    else:
+        return "Instrumento no encontrado"
+
+
+
+# eliminar instrumentos
+def eliminar_instrumento(nro_inv):
+    sql="DELETE FROM instrumentos WHERE nro_inv=%"
+    cursor.execute(sql,(nro_inv))
+    connection.commit()
+    return "instrumento borrado con exito!!!"
+
+  #################### tabla proyectores #########################
+
+    # Crear proyector 
+def crear_proyector(nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_ingreso, vga, hdmi, adicionales):
+    sql = "INSERT INTO proyectores (nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_ingreso, vga, hdmi, adicionales) VALUES (%, %, %, %, %, %, %, %, %, %, %)"
+    cursor.execute(sql, (nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_ingreso, vga, hdmi, adicionales))
+    connection.commit()
+    return cursor.lastrowid
+
+# Leer todos los proyectores
+def leer_todos_proyectores():
+    sql = "SELECT * FROM proyectores"
+    cursor.execute(sql)
+    proyectorese = cursor.fetchall()
+    return proyectorese
+
+# Actualizar proyector 
+def actualizar_proyector(nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_ingreso, vga, hdmi, adicionales):
+    sql = "UPDATE proyectores SET nro_inv=%, cod_rec=%, marca=%, modelo=%, sn=%, estado=%, ubicacion=%, fecha_ingreso=%, vga=%, hdmi=%, adicionales=%"
+    cursor.execute(sql, (nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_ingreso, vga, hdmi, adicionales))
+    connection.commit()
+    return "Proyector actualizado con éxito!"
+
+# Eliminar proyector
+def eliminar_proyector(nro_inv):
+    sql = "DELETE FROM proyectores WHERE nro_inv=%"
+    cursor.execute(sql, (nro_inv,))
+    connection.commit()
+    return "Proyector borrado con éxito!"
+
+# buscar proyector
+def buscar_proyector(nro_inv):
+    sql="select * from proyectores where nro_inv=%"
+    cursor.execute(sql, (nro_inv))
+    proyector = cursor.fetchone()
+    if proyector:
+        return proyector
+    else:
+        return "Proyector no encontrado"
+
+#################### tabla notebooks#########################
+# Crear notebook
+def crear_notebook(nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_Ingreso, vga, hdmi, adicionales, s_op, lectora_DVD):
+    sql = "INSERT INTO notebooks (nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_Ingreso, vga, hdmi, s_op, adicionales, lectora_DVD) VALUES (%, %, %, %, %, %, %, %, %, %, %, %, %)"
+    cursor.execute(sql, (nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_Ingreso, vga, hdmi, s_op, adicionales, lectora_DVD))
+    connection.commit()
+    return cursor.lastrowid
+
+# Leer todos los notebooks
+def leer_todos_notebooks():
+    sql = "SELECT * FROM notebooks"
+    cursor.execute(sql)
+    notebookse = cursor.fetchall()
+    return notebookse
+
+# Actualizar notebooks
+def actualizar_notebook(nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_Ingreso, vga, hdmi, s_op, adicionales, lectora_DVD):
+    sql = "UPDATE notebooks SET nro_inv=%, cod_rec=%, marca=%, modelo=%, sn=%, estado=%, ubicacion=%, fecha_Ingreso=%, vga=%, hdmi=%, s_op=%, adicionales=%, lectora_DVD=%"
+    cursor.execute(sql, (nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, fecha_Ingreso, vga, hdmi, s_op, adicionales, lectora_DVD))
+    connection.commit()
+    return "Notebook actualizado con éxito!"
+
+# buscar notebook
+def buscar_notebook(nro_inv):
+    sql="select * from notebooks where nro_inv=%"
+    cursor.execute(sql, (nro_inv))
+    notebook = cursor.fetchone()
+    if notebook:
+        return notebook
+    else:
+        return "Notebook no encontrada"
+
+# Eliminar notebooks
+def eliminar_notebook(nro_inv):
+    sql = "DELETE FROM notebooks WHERE nro_inv=%"
+    cursor.execute(sql, (nro_inv,))
+    connection.commit()
+    return "Notebook borrada con éxito!"
+
+
+
+
+#crud libros
+
+app = Flask(__name__)
+
+@app.route('/libros', methods=['GET', 'POST'])
+def libros():
+    if request.method == 'GET':
+        libros = leer_todos_libros()  # Función para leer todos los libros
+        return render_template('listar-bib.html', libros=libros)
+    elif request.method == 'POST':
+        # Procesar el formulario para crear un nuevo libro
+        id = request.form['id']
+        descripcion = request.form['descripcion']
+        idioma = request.form['idioma']
+        tipo = request.form['tipo']
+        ubicacion = request.form['ubicacion']
+        instrumento_asociado = request.form['instrumento_asociado']
         
-    ########################para libros###########################
-    
-    def agregar_producto(self, descripcion, cantidad, precio, imagen, proveedor):
-               
-        sql = "INSERT INTO productos (descripcion, cantidad, precio, imagen_url, proveedor) VALUES (%s, %s, %s, %s, %s)"
-        valores = (descripcion, cantidad, precio, imagen, proveedor)
+        crear_libro(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado)  # Función para crear un nuevo libro
+        return "Libro creado exitosamente"
 
-        self.cursor.execute(sql, valores)        
-        self.conn.commit()
-        return self.cursor.lastrowid
+@app.route('/listar-bib')
+def listar_bib():
+    libros = leer_todos_libros()  # Función para leer todos los libros
+    return render_template('listar-bib.html', libros=libros)
+   # return redirect(url_for('libros'))
 
-    #----------------------------------------------------------------
-    def consultar_producto(self, codigo):
-        # Consultamos un producto a partir de su código
-        self.cursor.execute(f"SELECT * FROM productos WHERE codigo = {codigo}")
-        return self.cursor.fetchone()
+# Ruta para borrar un libro
 
-    #----------------------------------------------------------------
-    def modificar_producto(self, codigo, nueva_descripcion, nueva_cantidad, nuevo_precio, nueva_imagen, nuevo_proveedor):
-        sql = "UPDATE productos SET descripcion = %s, cantidad = %s, precio = %s, imagen_url = %s, proveedor = %s WHERE codigo = %s"
-        valores = (nueva_descripcion, nueva_cantidad, nuevo_precio, nueva_imagen, nuevo_proveedor, codigo)
-        self.cursor.execute(sql, valores)
-        self.conn.commit()
-        return self.cursor.rowcount > 0
-
-    #----------------------------------------------------------------
-    def listar_productos(self):
-        self.cursor.execute("SELECT * FROM productos")
-        productos = self.cursor.fetchall()
-        return productos
-
-    #----------------------------------------------------------------
-    def eliminar_producto(self, codigo):
-        # Eliminamos un producto de la tabla a partir de su código
-        self.cursor.execute(f"DELETE FROM productos WHERE codigo = {codigo}")
-        self.conn.commit()
-        return self.cursor.rowcount > 0
-
-    #----------------------------------------------------------------
-    def mostrar_producto(self, codigo):
-        # Mostramos los datos de un producto a partir de su código
-        producto = self.consultar_producto(codigo)
-        if producto:
-            print("-" * 40)
-            print(f"Código.....: {producto['codigo']}")
-            print(f"Descripción: {producto['descripcion']}")
-            print(f"Cantidad...: {producto['cantidad']}")
-            print(f"Precio.....: {producto['precio']}")
-            print(f"Imagen.....: {producto['imagen_url']}")
-            print(f"Proveedor..: {producto['proveedor']}")
-            print("-" * 40)
+@app.route('/libros/borrar/<id>', methods=['GET', 'POST'])
+def borrar_libro(id):
+    if request.method == 'POST':
+        eliminar_libro(id)
+        return redirect(url_for('libros'))  # Redirige a la lista de libros
+    else:
+        libro = buscar_libro(id)
+        if libro:
+            return render_template('confirmar_borrado.html', libro=libro)  # Renderiza una plantilla de confirmación
         else:
-            print("Producto no encontrado.")
-
-
-#--------------------------------------------------------------------
-# Cuerpo del programa
-#--------------------------------------------------------------------
-# Crear una instancia de la clase Catalogo
-catalogo = Catalogo(host='localhost', user='root', password='root', database='miapp')
-#catalogo = Catalogo(host='USUARIO.mysql.pythonanywhere-services.com', user='USUARIO', password='CLAVE', database='USUARIO$miapp')
-
-
-# Carpeta para guardar las imagenes.
-RUTA_DESTINO = './static/imagenes/'
-
-#Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
-#RUTA_DESTINO = '/home/USUARIO/mysite/static/imagenes'
-
-
-#--------------------------------------------------------------------
-# Listar todos los productos
-#--------------------------------------------------------------------
-#La ruta Flask /productos con el método HTTP GET está diseñada para proporcionar los detalles de todos los productos almacenados en la base de datos.
-#El método devuelve una lista con todos los productos en formato JSON.
-@app.route("/productos", methods=["GET"])
-def listar_productos():
-    productos = catalogo.listar_productos()
-    return jsonify(productos)
-
-
-#--------------------------------------------------------------------
-# Mostrar un sólo producto según su código
-#--------------------------------------------------------------------
-#La ruta Flask /productos/<int:codigo> con el método HTTP GET está diseñada para proporcionar los detalles de un producto específico basado en su código.
-#El método busca en la base de datos el producto con el código especificado y devuelve un JSON con los detalles del producto si lo encuentra, o None si no lo encuentra.
-@app.route("/productos/<int:codigo>", methods=["GET"])
-def mostrar_producto(codigo):
-    producto = catalogo.consultar_producto(codigo)
-    if producto:
-        return jsonify(producto), 201
-    else:
-        return "Producto no encontrado", 404
-
-
-#--------------------------------------------------------------------
-# Agregar un producto
-#--------------------------------------------------------------------
-@app.route("/productos", methods=["POST"])
-#La ruta Flask `/productos` con el método HTTP POST está diseñada para permitir la adición de un nuevo producto a la base de datos.
-#La función agregar_producto se asocia con esta URL y es llamada cuando se hace una solicitud POST a /productos.
-def agregar_producto():
-    #Recojo los datos del form
-    descripcion = request.form['descripcion']
-    cantidad = request.form['cantidad']
-    precio = request.form['precio']
-    imagen = request.files['imagen']
-    proveedor = request.form['proveedor']  
-    nombre_imagen=""
-
-    
-    # Genero el nombre de la imagen
-    nombre_imagen = secure_filename(imagen.filename) #Chequea el nombre del archivo de la imagen, asegurándose de que sea seguro para guardar en el sistema de archivos
-    nombre_base, extension = os.path.splitext(nombre_imagen) #Separa el nombre del archivo de su extensión.
-    nombre_imagen = f"{nombre_base}_{int(time.time())}{extension}" #Genera un nuevo nombre para la imagen usando un timestamp, para evitar sobreescrituras y conflictos de nombres.
-
-    nuevo_codigo = catalogo.agregar_producto(descripcion, cantidad, precio, nombre_imagen, proveedor)
-    if nuevo_codigo:    
-        imagen.save(os.path.join(RUTA_DESTINO, nombre_imagen))
-
-        #Si el producto se agrega con éxito, se devuelve una respuesta JSON con un mensaje de éxito y un código de estado HTTP 201 (Creado).
-        return jsonify({"mensaje": "Producto agregado correctamente.", "codigo": nuevo_codigo, "imagen": nombre_imagen}), 201
-    else:
-        #Si el producto no se puede agregar, se devuelve una respuesta JSON con un mensaje de error y un código de estado HTTP 500 (Internal Server Error).
-        return jsonify({"mensaje": "Error al agregar el producto."}), 500
-    
-
-#--------------------------------------------------------------------
-# Modificar un producto según su código
-#--------------------------------------------------------------------
-@app.route("/productos/<int:codigo>", methods=["PUT"])
-#La ruta Flask /productos/<int:codigo> con el método HTTP PUT está diseñada para actualizar la información de un producto existente en la base de datos, identificado por su código.
-#La función modificar_producto se asocia con esta URL y es invocada cuando se realiza una solicitud PUT a /productos/ seguido de un número (el código del producto).
-def modificar_producto(codigo):
-    #Se recuperan los nuevos datos del formulario
-    nueva_descripcion = request.form.get("descripcion")
-    nueva_cantidad = request.form.get("cantidad")
-    nuevo_precio = request.form.get("precio")
-    nuevo_proveedor = request.form.get("proveedor")
-    
-    
-    # Verifica si se proporcionó una nueva imagen
-    if 'imagen' in request.files:
-        imagen = request.files['imagen']
-        # Procesamiento de la imagen
-        nombre_imagen = secure_filename(imagen.filename) #Chequea el nombre del archivo de la imagen, asegurándose de que sea seguro para guardar en el sistema de archivos
-        nombre_base, extension = os.path.splitext(nombre_imagen) #Separa el nombre del archivo de su extensión.
-        nombre_imagen = f"{nombre_base}_{int(time.time())}{extension}" #Genera un nuevo nombre para la imagen usando un timestamp, para evitar sobreescrituras y conflictos de nombres.
-
-        # Guardar la imagen en el servidor
-        imagen.save(os.path.join(RUTA_DESTINO, nombre_imagen))
+            return "Libro no encontrado"
         
-        # Busco el producto guardado
-        producto = catalogo.consultar_producto(codigo)
-        if producto: # Si existe el producto...
-            imagen_vieja = producto["imagen_url"]
-            # Armo la ruta a la imagen
-            ruta_imagen = os.path.join(RUTA_DESTINO, imagen_vieja)
+# Crud instrumentos
 
-            # Y si existe la borro.
-            if os.path.exists(ruta_imagen):
-                os.remove(ruta_imagen)
+@app.route('/instrumentos', methods=['GET', 'POST'])
+def instrumentos():
+    try:
+        if request.method == 'GET':
+            instrumentos = leer_todos_instrumentos()  # Función para leer todos los instrumentos
+            return render_template('instrumentos.html', instrumentos=instrumentos)
+        elif request.method == 'POST':
+            # Procesar el formulario para crear un nuevo instrumento
+            nro_inv = request.form['nro_inv']
+            cod_rec = request.form['cod_rec']
+            tipo = request.form['tipo']
+            descripcion = request.form['descripcion']
+            marca = request.form['marca']
+            modelo = request.form['modelo']
+            sn = request.form['sn']
+            ab_rango = request.form['ab_rango']
+            cod_manual = request.form['cod_manual']
+            especificaciones = request.form['especificaciones']
+            estado = request.form['estado']
+            ubicacion = request.form['ubicacion']
+            adicionales = request.form['adicionales']
+            fecha_ingreso = request.form['fecha_ingreso']
+            
+            crear_instrumento(nro_inv, cod_rec, tipo, descripcion, marca, modelo, sn, ab_rango, cod_manual, especificaciones, estado, ubicacion, adicionales, fecha_ingreso)  # Función para crear un nuevo instrumento
+            return "Instrumento creado exitosamente"
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return "Error processing request", 500
     
+# Ruta para borrar/buscar un instrumento
+
+@app.route('/instrumento/borrar/<nro_inv>', methods=['GET', 'POST'])
+def borrar_instrumento(nro_inv):
+    if request.method == 'POST':
+        eliminar_instrumento(nro_inv)
+        return redirect(url_for('instrumento'))  # Redirige a la lista de instrumentos
     else:
-        # Si no se proporciona una nueva imagen, simplemente usa la imagen existente del producto
-        producto = catalogo.consultar_producto(codigo)
-        if producto:
-            nombre_imagen = producto["imagen_url"]
-
-
-    # Se llama al método modificar_producto pasando el codigo del producto y los nuevos datos.
-    if catalogo.modificar_producto(codigo, nueva_descripcion, nueva_cantidad, nuevo_precio, nombre_imagen, nuevo_proveedor):
-        
-        #Si la actualización es exitosa, se devuelve una respuesta JSON con un mensaje de éxito y un código de estado HTTP 200 (OK).
-        return jsonify({"mensaje": "Producto modificado"}), 200
-    else:
-        #Si el producto no se encuentra (por ejemplo, si no hay ningún producto con el código dado), se devuelve un mensaje de error con un código de estado HTTP 404 (No Encontrado).
-        return jsonify({"mensaje": "Producto no encontrado"}), 403
-
-
-
-#--------------------------------------------------------------------
-# Eliminar un producto según su código
-#--------------------------------------------------------------------
-@app.route("/productos/<int:codigo>", methods=["DELETE"])
-#La ruta Flask /productos/<int:codigo> con el método HTTP DELETE está diseñada para eliminar un producto específico de la base de datos, utilizando su código como identificador.
-#La función eliminar_producto se asocia con esta URL y es llamada cuando se realiza una solicitud DELETE a /productos/ seguido de un número (el código del producto).
-def eliminar_producto(codigo):
-    # Busco el producto en la base de datos
-    producto = catalogo.consultar_producto(codigo)
-    if producto: # Si el producto existe, verifica si hay una imagen asociada en el servidor.
-        imagen_vieja = producto["imagen_url"]
-        # Armo la ruta a la imagen
-        ruta_imagen = os.path.join(RUTA_DESTINO, imagen_vieja)
-
-        # Y si existe, la elimina del sistema de archivos.
-        if os.path.exists(ruta_imagen):
-            os.remove(ruta_imagen)
-
-        # Luego, elimina el producto del catálogo
-        if catalogo.eliminar_producto(codigo):
-            #Si el producto se elimina correctamente, se devuelve una respuesta JSON con un mensaje de éxito y un código de estado HTTP 200 (OK).
-            return jsonify({"mensaje": "Producto eliminado"}), 200
+        instrumento = buscar_instrumento(nro_inv)
+        if instrumento:
+            return render_template('confirmar_borrado.html', instrumento=instrumento)  # Renderiza una plantilla de confirmación
         else:
-            #Si ocurre un error durante la eliminación (por ejemplo, si el producto no se puede eliminar de la base de datos por alguna razón), se devuelve un mensaje de error con un código de estado HTTP 500 (Error Interno del Servidor).
-            return jsonify({"mensaje": "Error al eliminar el producto"}), 500
+            return "Instrumento no encontrado"
+
+@app.route('/notebooks', methods=['GET', 'POST'])
+def notebooks():
+    try:
+        if request.method == 'GET':
+            notebooks = leer_todos_notebooks()  # Función para leer todos las notebooks
+            return render_template('notebooks.html', notebooks=notebooks)
+        elif request.method == 'POST':
+        # Procesar el formulario para crear un nuevo instrumento
+            nro_inv = request.form['nro_inv']
+            cod_rec = request.form['cod_rec']
+            marca = request.form['marca']
+            modelo = request.form['modelo']
+            sn = request.form['sn']
+            estado = request.form['estado']
+            ubicacion = request.form['ubicacion']
+            vga = request.form['vga']
+            hdmi = request.form['hdmi']
+            s_op = request.form['s_op']
+            adicionales = request.form['adicionales']
+            fecha_ingreso = request.form['fecha_ingreso']
+            lectora_dvd = request.form['lectora_dvd']
+            
+            crear_notebook(nro_inv, cod_rec, marca, modelo, sn, estado, ubicacion, vga, hdmi, s_op, adicionales, lectora_dvd, fecha_ingreso )  # Función para crear un nuevo instrumento
+            return "Notebook creada exitosamente"
+    except Exception as e:
+        print(f"Ocurrio el error:  {e}")
+        return "Error al procesar requerimiento", 500
+    
+    # Ruta para borrar/buscar una notebook
+
+@app.route('/notebook/borrar/<nro_inv>', methods=['GET', 'POST'])
+def borrar_notebook(nro_inv):
+    if request.method == 'POST':
+        eliminar_notebook(nro_inv)
+        return redirect(url_for('notebook'))  # Redirige a la lista de notebook
     else:
-        #Si el producto no se encuentra (por ejemplo, si no existe un producto con el codigo proporcionado), se devuelve un mensaje de error con un código de estado HTTP 404 (No Encontrado). 
-        return jsonify({"mensaje": "Producto no encontrado"}), 404
+        notebook = buscar_notebook(nro_inv)
+        if notebook:
+            return render_template('confirmar_borrado.html', notebook=notebook)  # Renderiza una plantilla de confirmación
+        else:
+            return "Instrumento no encontrado"
+    
+@app.route('/proyectores', methods=['GET', 'POST'])
+def proyectores():
+    try:    
+        if request.method == 'GET':
+            proyectores = leer_todos_proyectores()  # Función para leer todos los proyectores
+            return render_template('proyectores.html', proyectores=proyectores)
+        elif request.method == 'POST':
+        # Procesar el formulario para crear un nuevo proyector
+            nro_inv = request.form['nro_inv']
+            cod_rec = request.form['cod_rec']
+            tipo = request.form['tipo']
+            descripcion = request.form['descripcion']
+            marca = request.form['marca']
+            modelo = request.form['modelo']
+            sn = request.form['sn']
+            ab_rango = request.form['ab_rango']
+            cod_manual = request.form['cod_manual']
+            especificaciones = request.form['especificaciones']
+            estado = request.form['estado']
+            ubicacion = request.form['ubicacion']
+            adicionales = request.form['adicionales']
+            fecha_ingreso = request.form['fecha_ingreso']
+      
+            crear_proyector(nro_inv,cod_rec,tipo,descripcion,marca,modelo,sn,ab_rango,cod_manual, especificaciones, estado, ubicacion, adicionales,fecha_ingreso)  # Función para crear un nuevo instrumento
+            return "proyector creado exitosamente"
+    except Exception as e:
+        print(f"Ocurrio el error:  {e}")
+        return "Error al procesar requerimiento", 500
 
-#############################################################################################################
+@app.route('/proyector/borrar/<nro_inv>', methods=['GET', 'POST'])
+def borrar_proyector(nro_inv):
+    if request.method == 'POST':
+        eliminar_proyector(nro_inv)
+        return redirect(url_for('proyector'))  # Redirige a la lista de proyector
+    else:
+        proyector = buscar_proyector(nro_inv)
+        if proyector:
+            return render_template('confirmar_borrado.html', proyector=proyector)  # Renderiza una plantilla de confirmación
+        else:
+            return "Proyector no encontrado"    
 
-#############################################################################################################
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
+    
+connection.close()
