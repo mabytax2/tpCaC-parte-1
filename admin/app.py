@@ -1,41 +1,37 @@
 #--------------------------------------------------------------------
 # Instalar con pip install Flask
 from flask import Flask, request, jsonify, render_template
-#from flask import request
 
-# Instalar con pip install flask-cors
+
 from flask_cors import CORS
 
-# Instalar con pip install mysql-connector-python
+
 import mysql.connector
 
-# Si es necesario, pip install Werkzeug
+
 from werkzeug.utils import secure_filename
 
-# No es necesario instalar, es parte del sistema standard de Python
+
 import os
 import time
-#--------------------------------------------------------------------
-
-
 
 app = Flask(__name__)
-CORS(app)  # Esto habilitará CORS para todas las rutas
+CORS(app)  
 
-#--------------------------------------------------------------------
+
 class Cat_libros:
-    #----------------------------------------------------------------
-    # Constructor de la clase
+    
+    # Constructor 
     def __init__(self, host, user, password, database):
-        # Primero, establecemos una conexión sin especificar la base de datos
+
         self.conn = mysql.connector.connect(
-            host=host,
-            user=user,
-            password=password
+        host=host,
+        user=user,
+        password=password
         )
         self.cursor = self.conn.cursor()
 
-        # Intentamos seleccionar la base de datos
+
         try:
             self.cursor.execute(f"USE {database}")
         except mysql.connector.Error as err:
@@ -81,16 +77,17 @@ class Cat_libros:
 # leer todos los libros
     def leer_todos_libros():
         sql="SELECT * FROM libros"
+        
         self.cursor.execute(sql)
         libros=self.cursor.fetchall()
         return libros
 
 # actualizar libros
-def actualizar_libro(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado):
-    sql="UPDATE libros SET id=%, descripcion=%, idioma=%, tipo=%, ubicacion=%, instrumento_asociado=%"
-    cursor.execute(sql,(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado))
-    connection.commit()
-    return "Libro actualizado con exito!!!!"
+    def actualizar_libro(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado):
+        sql="UPDATE libros SET id=%, descripcion=%, idioma=%, tipo=%, ubicacion=%, instrumento_asociado=%"
+        self.cursor.execute(sql,(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado))
+        self.conn.commit()
+        return "Libro actualizado con exito!!!!"
 
 # buscar libros
 def buscar_libro(id):
@@ -176,7 +173,7 @@ RUTA_DESTINO = './static/imagenes/'
 #El método devuelve una lista con todos los productos en formato JSON.
 @app.route("/libros", methods=["GET"])
 def listar_todos_libros():
-    productos = catalogo.listar_productos()
+    productos = catalogo.listar_()
     return jsonify(productos)
 
 
