@@ -1,111 +1,74 @@
 #--------------------------------------------------------------------
 # Instalar con pip install Flask
 from flask import Flask, request, jsonify, render_template
+#from flask import request
 
-
+# Instalar con pip install flask-cors
 from flask_cors import CORS
 
-
+# Instalar con pip install mysql-connector-python
 import mysql.connector
 
-
+# Si es necesario, pip install Werkzeug
 from werkzeug.utils import secure_filename
 
-
+# No es necesario instalar, es parte del sistema standard de Python
 import os
 import time
+#--------------------------------------------------------------------
+
+
 
 app = Flask(__name__)
-CORS(app)  
+CORS(app)  # Esto habilitará CORS para todas las rutas
 
-
-class Cat_libros:
-    
-    # Constructor 
+#--------------------------------------------------------------------
+class Catalogo:
+    #----------------------------------------------------------------
+    # Constructor de la clase
     def __init__(self, host, user, password, database):
-
+        # Primero, establecemos una conexión sin especificar la base de datos
         self.conn = mysql.connector.connect(
-        host=host,
-        user=user,
-        password=password
+            host=host,
+            user=user,
+            password=password
         )
         self.cursor = self.conn.cursor()
 
-
+        # Intentamos seleccionar la base de datos
         try:
             self.cursor.execute(f"USE {database}")
         except mysql.connector.Error as err:
-            #Si la base de datos no existe, la creamos
+            # Si la base de datos no existe, la creamos
             if err.errno == mysql.connector.errorcode.ER_BAD_DB_ERROR:
                 self.cursor.execute(f"CREATE DATABASE {database}")
                 self.conn.database = database
             else:
-                 raise err
+                raise err
 
         # Una vez que la base de datos está establecida, creamos la tabla si no existe
-        # self.cursor.execute('''CREATE TABLE IF NOT EXISTS productos (
-        #     codigo INT AUTO_INCREMENT PRIMARY KEY,
-        #     descripcion VARCHAR(255) NOT NULL,
-        #     cantidad INT NOT NULL,
-        #     precio DECIMAL(10, 2) NOT NULL,
-        #     imagen_url VARCHAR(255),
-        #     proveedor INT(4))''')
-        # self.conn.commit()
+        self.cursor.execute('''CREATE TABLE IF NOT EXISTS productos (
+            codigo INT AUTO_INCREMENT PRIMARY KEY,
+            descripcion VARCHAR(255) NOT NULL,
+            cantidad INT NOT NULL,
+            precio DECIMAL(10, 2) NOT NULL,
+            imagen_url VARCHAR(255),
+            proveedor INT(4))''')
+        self.conn.commit()
 
         # Cerrar el cursor inicial y abrir uno nuevo con el parámetro dictionary=True
         self.cursor.close()
         self.cursor = self.conn.cursor(dictionary=True)
         
     #----------------------------------------------------------------
-    # def agregar_libros(self, descripcion, cantidad, precio, imagen, proveedor):
+    def agregar_producto(self, descripcion, cantidad, precio, imagen, proveedor):
                
-    #     sql = "INSERT INTO libros (descripcion, cantidad, precio, imagen_url, proveedor) VALUES (%s, %s, %s, %s, %s)"
-    #     valores = (descripcion, cantidad, precio, imagen, proveedor)
+        sql = "INSERT INTO productos (descripcion, cantidad, precio, imagen_url, proveedor) VALUES (%s, %s, %s, %s, %s)"
+        valores = (descripcion, cantidad, precio, imagen, proveedor)
 
-    #     self.cursor.execute(sql, valores)        
-    #     self.conn.commit()
-    #     return self.cursor.lastrowid
-################tabla libros#########################
-#crear libro
-    def crear_libro(self,id,descripcion, idioma,tipo, ubicacion,instrumento_asociado):
-        sql="INSERT INTO libros (id,descripcion, idioma,tipo, ubicacion,instrumento_asociado) VALUES (%,%,%,%,%,%)"
-        valores=(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado)
-        self.cursor.execute(sql, valores)
+        self.cursor.execute(sql, valores)        
         self.conn.commit()
         return self.cursor.lastrowid
-
-# leer todos los libros
-    def leer_todos_libros():
-        sql="SELECT * FROM libros"
-        
-        self.cursor.execute(sql)
-        libros=self.cursor.fetchall()
-        return libros
-
-# actualizar libros
-    def actualizar_libro(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado):
-        sql="UPDATE libros SET id=%, descripcion=%, idioma=%, tipo=%, ubicacion=%, instrumento_asociado=%"
-        self.cursor.execute(sql,(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado))
-        self.conn.commit()
-        return "Libro actualizado con exito!!!!"
-
-# buscar libros
-def buscar_libro(id):
-    sql="select * from libros where id=%"
-    cursor.execute(sql, (id))
-    libro = cursor.fetchone()
-    if libro:
-        return libro
-    else:
-        return "Libro no encontrado"
-
-
-# eliminar libro
-def eliminar_libro(id):
-    sql="DELETE FROM libros WHERE id=%"
-    cursor.execute(sql,(id))
-    connection.commit()
-    return "Libro borrado con exito!!!"
 
     #----------------------------------------------------------------
     def consultar_producto(self, codigo):
@@ -155,7 +118,7 @@ def eliminar_libro(id):
 # Cuerpo del programa
 #--------------------------------------------------------------------
 # Crear una instancia de la clase Catalogo
-catalogo = Cat_libros(host='localhost', user='root', password='', database='unlamdb')
+catalogo = Catalogo(host='localhost', user='root', password='root', database='miapp')
 #catalogo = Catalogo(host='USUARIO.mysql.pythonanywhere-services.com', user='USUARIO', password='CLAVE', database='USUARIO$miapp')
 
 
@@ -171,9 +134,9 @@ RUTA_DESTINO = './static/imagenes/'
 #--------------------------------------------------------------------
 #La ruta Flask /productos con el método HTTP GET está diseñada para proporcionar los detalles de todos los productos almacenados en la base de datos.
 #El método devuelve una lista con todos los productos en formato JSON.
-@app.route("/libros", methods=["GET"])
-def listar_todos_libros():
-    productos = catalogo.listar_()
+@app.route("/productos", methods=["GET"])
+def listar_productos():
+    productos = catalogo.listar_productos()
     return jsonify(productos)
 
 
