@@ -1,5 +1,5 @@
-import mysql.connector
-import flask_cors
+import mysql.connector # type: ignore
+import flask_cors # type: ignore
 from flask import Flask, render_template, request
 app = Flask(__name__)
 

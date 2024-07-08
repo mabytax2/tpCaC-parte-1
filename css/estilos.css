@@ -22,7 +22,7 @@ header{
     left: 0;
     top: 0;
     width: 100%;
-    height:fit-content;
+    height:auto;
     padding: 0%;
     border: 0;
 }
@@ -46,7 +46,7 @@ h3{
 
 .container{
         display: flex; 
-        width: fit-content;
+        width: auto;
 }
 
 .content{
@@ -116,7 +116,7 @@ p{
     left: 0;
     bottom: 0;
     width: 100%;
-    height:fit-content;
+    height:auto;
     background-color: green;
     color: red;
     text-align: center;
@@ -233,7 +233,7 @@ input, textarea{
 
 table {
     border-collapse: collapse;
-    width:fit-content;
+    width:auto;
 }
 
 .tabla{
