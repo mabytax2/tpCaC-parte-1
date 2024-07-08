@@ -334,3 +334,69 @@ li{
         font-size:medium;
     }
   } 
+
+  
+  .button {
+    &.comun{
+        --color-hover: pink;
+    }
+    &.alternative {
+        --color-hover: #47a13b;
+        --background: #08861d;
+        --hover-back: #346e04;
+        --hover-front: #84f726;
+    }
+    &.simple {
+        --background: #27fe93;
+        --background-hover: #dbd817;
+    }
+}
+
+
+.button {
+    --color: #fff;
+    --color-hover: var(--color);
+    --background: #2B3044;
+    --background-hover: var(--background);
+    --hover-back: #6D58FF;
+    --hover-front: #5C86FF;
+    padding: 8px 28px;
+    border-radius: 20px;
+    line-height: 24px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .02em;
+    border: none;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: -moz-radial-gradient();
+    color: var(--c, var(--color));
+    background: var(--b, var(--background));
+    transition: color .2s linear var(--c-d, .2s), background .3s linear var(--b-d, .2s);
+    &:not(.simple) {
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            background: var(--pb, var(--hover-back));
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200%;
+            border-radius: var(--br, 40%);
+            transform: translateY(var(--y, 50%));
+            transition: transform var(--d, .4s) ease-in var(--d-d, 0s), border-radius .5s ease var(--br-d, .08s);
+
+        }
+        &:after {
+            --pb: var(--hover-front);
+            --d: .44s;
+        }
+    }

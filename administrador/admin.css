@@ -1,12 +1,15 @@
 .button {
-    &.comun{
-        --color-hover: pink;
-    }
-    &.alternative {
-        --color-hover: #47a13b;
+    &.alternative1{
+        --color-hover: #0f53a1;
         --background: #08861d;
         --hover-back: #346e04;
         --hover-front: #84f726;
+    }
+    &.alternative {
+        --color-hover: #2697e2;
+        --background: #ac0487;
+        --hover-back: #6e042d;
+        --hover-front: #42033f;
     }
     &.simple {
         --background: #27fe93;
@@ -135,7 +138,7 @@ html {
     }
 }
 
-// Center & dribbble
+/* // Center & dribbble */
 body {
     min-height: 100vh;
     display: flex;
@@ -180,4 +183,65 @@ body {
             fill: #1da1f2;
         }
     }
+}
+
+form {
+    width: 350px;
+    height: 400px;
+    background-color: #292c29;
+    padding-top: 30px;
+    margin: 10px auto;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: -10px 20px 15px 10px #3f403f;
+}
+
+
+
+input {
+
+    font-size: 16px;
+    padding: 8px;
+    display: flex;
+    margin: 10px auto;
+}
+
+label {
+
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+    display: block;
+    margin: 15px;
+    text-align: center;
+
+
+}
+
+button {
+    font-size: 18px;
+    padding: 5px;
+    display: block;
+    background-color: darkgreen;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 50px;
+    width: 150px;
+    margin: 0 auto;
+    border: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000000;
+
+
+}
+
+button:hover {
+    color: black;
+    background-color: yellow;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000000;
+
+
 }

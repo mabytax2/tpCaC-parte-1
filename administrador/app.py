@@ -243,7 +243,7 @@ def instrumentos():
     
 # Ruta para borrar/buscar un instrumento
 
-@app.route('/instrumento/borrar/<nro_inventario>', methods=['GET', 'POST'])
+@app.route('/instrumento/borrar/<nro_inv>', methods=['GET', 'POST'])
 def borrar_instrumento(nro_inv):
     if request.method == 'POST':
         eliminar_instrumento(nro_inv)
@@ -292,8 +292,8 @@ def borrar_notebook(nro_inv):
         return redirect(url_for('notebook'))  # Redirige a la lista de notebook
     else:
         notebook = buscar_notebook(nro_inv)
-        if instrumento:
-            return render_template('confirmar_borrado.html', instrumento=instrumento)  # Renderiza una plantilla de confirmación
+        if notebook:
+            return render_template('confirmar_borrado.html', notebook=notebook)  # Renderiza una plantilla de confirmación
         else:
             return "Instrumento no encontrado"
     
@@ -325,6 +325,18 @@ def proyectores():
     except Exception as e:
         print(f"Ocurrio el error:  {e}")
         return "Error al procesar requerimiento", 500
+
+@app.route('/proyector/borrar/<nro_inv>', methods=['GET', 'POST'])
+def borrar_proyector(nro_inv):
+    if request.method == 'POST':
+        eliminar_proyector(nro_inv)
+        return redirect(url_for('proyector'))  # Redirige a la lista de proyector
+    else:
+        proyector = buscar_proyector(nro_inv)
+        if proyector:
+            return render_template('confirmar_borrado.html', proyector=proyector)  # Renderiza una plantilla de confirmación
+        else:
+            return "Proyector no encontrado"    
 
 if __name__ == '__main__':
     app.run(debug=True)
