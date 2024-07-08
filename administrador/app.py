@@ -1,7 +1,24 @@
 
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template, request, url_for, jsonify
+
+from flask_cors import CORS
+
+# Instalar con pip install mysql-connector-python
+import mysql.connector
+from mysql.connector import connection
+from mysql.connector import errorcode
+# Si es necesario, pip install Werkzeug
+from werkzeug.utils import secure_filename
+
+# No es necesario instalar, es parte del sistema standard de Python
+import os
+import time
+#--------------------------------------------------------------------
 
 
+
+app = Flask(__name__)
+CORS(app)  # Esto habilitará CORS para todas las rutas
 import pymysql
 
 connection=pymysql.connect(
@@ -24,8 +41,8 @@ def crear_libro(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado):
 def leer_todos_libros():
     sql="SELECT * FROM libros"
     cursor.execute(sql)
-    librose=cursor.fetchall()
-    return librose
+    libros=cursor.fetchall()
+    return libros
 
 # actualizar libros
 def actualizar_libro(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado):
@@ -195,6 +212,12 @@ def libros():
         
         crear_libro(id,descripcion, idioma,tipo, ubicacion,instrumento_asociado)  # Función para crear un nuevo libro
         return "Libro creado exitosamente"
+
+@app.route('/listar-bib')
+def listar_bib():
+    libros = leer_todos_libros()  # Función para leer todos los libros
+    return render_template('listar-bib.html', libros=libros)
+   # return redirect(url_for('libros'))
 
 # Ruta para borrar un libro
 
