@@ -54,6 +54,13 @@ h3{
     display:flex;
 }
 
+.custom_columna{
+    /* justify-content: left;
+    left:0cm; */
+    /* margin-right: 0px;
+    margin-left: 0px; */
+    padding:0px;
+}
 .columna{    
     justify-content: left;
     align-items: flex-start; 
@@ -179,11 +186,18 @@ img {
 .banner-ing-elec {
     max-width:50%;
     height:100vh;    
+    margin:0px;
+    
+}
+  
+/* .banner-ing-elec {
+    max-width:50%;
+    height:100vh;    
     object-fit: cover;
     margin:0px;
 
-}
-  
+
+} */
 
 form{
 padding:0px;

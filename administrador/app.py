@@ -160,8 +160,8 @@ def mostrar_libro(libro_id):
 #--------------------------------------------------------------------
 @app.route("/libros", methods=["POST"])
 #La ruta Flask `/libro` con el método HTTP POST está diseñada para permitir la adición de un nuevo libro a la base de datos.
-#La función agregar_producto se asocia con esta URL y es llamada cuando se hace una solicitud POST a /libros.
-def agregar_producto():
+#La función agregar_libro se asocia con esta URL y es llamada cuando se hace una solicitud POST a /libros.
+def agregar_libro(id, descripcion, idioma, tipo, ubicacion. instrumento_asociado):
     #Recojo los datos del form
     libro_id = request.form['id']
     descripcion = request.form['descripcion']

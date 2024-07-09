@@ -19,46 +19,47 @@
         <a href="./index.html"><img src="../../img/gif_unlam.gif" alt="gif unlam" height="50px" width="50px">Home</a> 
     </header>
     <main>
-<div class="container">
-    <div class="column">
+        <div class="container"> <!-- aca pongo el div ppal -->
+           
+            <div class="columna"> <!-- aca pongo la imagen que va a ser un banner vertical -->
+              <img class="banner-ing-elec" src="../../img/unlam banner vertical.jpg" alt="Ingenieria Electronica"> 
+                
+            </div>
         
-        <img class="banner-ing-elec" src="../../img/unlam banner vertical.jpg" alt="Ingenieria Electronica">
-    </div>
-    
 
-    <div class="column">
+        <div class="columna">
     
-        <form id="form" action="/libros" method="post,get">
-            <br><br><br><br>
-            <label for="id">Id</label>
-            <input type="text" name="id" placeholder="id">
-            <br>
-            <label for="descripcion">Descripción</label>
-            <input type="text" name="descripcion" placeholder="descripcion">
-            <br>
-            <label for="idioma">Idioma</label>
-            <input type="text" name="idioma" placeholder="idioma">
-            <br>
-            <label for="tipo">Tipo</label>
-            <input type="text" name="tipo" placeholder="tipo">
-            <br>
-            <label for="ubicacion">Ubicación</label>
-            <input type="text" name="ubicacion" placeholder="ubicacion">
-            <br>
-            <label for="instAsociado">Instrumento Asociado</label>
-            <input type="text" name="instAsociado" placeholder="Instrumento asociado">
-        
+            <form id="form" action="/libros" method="post">
+                <br><br><br><br>
+                <label for="id">Id</label>
+                <input type="text" name="id" placeholder="id">
+                <br>
+                <label for="descripcion">Descripción</label>
+                <input type="text" name="descripcion" placeholder="descripcion">
+                <br>
+                <label for="idioma">Idioma</label>
+                <input type="text" name="idioma" placeholder="idioma">
+                <br>
+                <label for="tipo">Tipo</label>
+                <input type="text" name="tipo" placeholder="tipo">
+                <br>
+                <label for="ubicacion">Ubicación</label>
+                <input type="text" name="ubicacion" placeholder="ubicacion">
+                <br>
+                <label for="instAsociado">Instrumento Asociado</label>
+                <input type="text" name="instAsociado" placeholder="Instrumento asociado">
+            
             <!-- Botones -->
-            <br><br><br><br>
-            <center><button class="button comun" type="submit" name="insertarDato" value="insertar">Ingresar</button><br>
-            <center><button class="button alternative" type="submit" name="cambiarDato" value="modificar">Modificar</button><br>
-            <center><button class="button alternative1"type="submit" name="borrarDato" value="eliminar">Eliminar</button>
-            <br><br>
-            <a href='../index_admin.html'>Atras</a>
-        </form>
-        
+                <br><br><br><br>
+                <center><button class="button comun" type="submit" name="insertarDato" value="insertar">Ingresar</button><br>
+                <center><button class="button alternative" type="submit" name="cambiarDato" value="modificar">Modificar</button><br>
+                <center><button class="button alternative1"type="submit" name="borrarDato" value="eliminar">Eliminar</button>
+                 <br><br>
+                <a href='../index_admin.html'>Atras</a>
+            </form>
+        </div>
     </div>
-</div>
+
     </main>
     <footer class="footer">Hecho por alejandra y priscila</footer>
     <script>
