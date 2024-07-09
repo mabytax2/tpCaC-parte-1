@@ -73,10 +73,11 @@ p{
     height:100px;
 }
 
-.menu{
+.mymenu{
     color:brown;
     font-family: 'Tangerine', serif;
     font-size: 20px;
+    
     
 }
 
@@ -261,7 +262,7 @@ li{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
- @media only screen and (max-width: 300px) { 
+ @media only screen and (max-width: 150px) { 
     header{
         height: 20%;
         color:white;
@@ -286,7 +287,7 @@ li{
     }
   }
   
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 400px) {
    
     header{
         height: 25%;
@@ -311,7 +312,7 @@ li{
         font-size: small;
     }
   }
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 401px) {
     header{
         height: 30%;
         color:black;
@@ -325,9 +326,9 @@ li{
       font-size: medium;
     }
     .menu{
-        font-size: medium;
+        font-size: small;
     }
-   footer{
+   .footer{
         font-family:cursive;
         background-color: rgb(248, 87, 221); 
         color:blue;
@@ -374,7 +375,7 @@ li{
     
     -webkit-appearance: none;
     appearance: none;
-    -webkit-tap-highlight-color: transparent;
+    /* -webkit-tap-highlight-color: transparent; */
     -webkit-mask-image: -webkit-radial-gradient(white, black);
     mask-image: -moz-radial-gradient();
     color: var(--c, var(--color));
