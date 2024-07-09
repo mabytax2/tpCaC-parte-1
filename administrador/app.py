@@ -64,7 +64,7 @@ class Catalogo:
     #----------------------------------------------------------------
     def agregar_libro(self, libro_id, descripcion, idioma, tipo, ubicacion, instrumento_asociado):
                
-        sql = "INSERT INTO productos (id, descripcion, idioma, tipo, ubicacion, instrumento_asociado) VALUES (%s, %s, %s, %s, %s, %s)"
+        sql = "INSERT INTO libros (id, descripcion, idioma, tipo, ubicacion, instrumento_asociado) VALUES (%s, %s, %s, %s, %s, %s)"
         valores = (libro_id, descripcion, idioma, tipo, ubicacion, instrumento_asociado)
 
         self.cursor.execute(sql, valores)        
