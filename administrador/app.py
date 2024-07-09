@@ -20,6 +20,7 @@ import mysql.connector
 app = Flask(__name__)
 CORS(app)  # Esto habilitará CORS para todas las rutas
 
+
 #--------------------------------------------------------------------
 class Catalogo:
     #----------------------------------------------------------------
@@ -27,9 +28,10 @@ class Catalogo:
     def __init__(self, host, user, password, database):
         # Primero, establecemos una conexión sin especificar la base de datos
         self.conn = mysql.connector.connect(
-            host=host,
-            user=user,
-            password=password
+            host="localhost",
+            user="root",
+            password="",
+            database="unlamdb"
         )
         self.cursor = self.conn.cursor()
 
@@ -58,7 +60,7 @@ class Catalogo:
         self.conn.commit()
 
         # Cerrar el cursor inicial y abrir uno nuevo con el parámetro dictionary=True
-        self.cursor.close()
+        #self.cursor.close()
         self.cursor = self.conn.cursor(dictionary=True)
         
     #----------------------------------------------------------------
@@ -67,7 +69,7 @@ class Catalogo:
         sql = "INSERT INTO libros (id, descripcion, idioma, tipo, ubicacion, instrumento_asociado) VALUES (%s, %s, %s, %s, %s, %s)"
         valores = (libro_id, descripcion, idioma, tipo, ubicacion, instrumento_asociado)
 
-        self.cursor.execute(sql, valores)        
+        self.cursor.execute(sql,valores )        
         self.conn.commit()
         return self.cursor.lastrowid
 
@@ -161,7 +163,7 @@ def mostrar_libro(libro_id):
 @app.route("/libros", methods=["POST"])
 #La ruta Flask `/libro` con el método HTTP POST está diseñada para permitir la adición de un nuevo libro a la base de datos.
 #La función agregar_libro se asocia con esta URL y es llamada cuando se hace una solicitud POST a /libros.
-def agregar_libro(id, descripcion, idioma, tipo, ubicacion. instrumento_asociado):
+def agregar_libro(id, descripcion, idioma, tipo, ubicacion, instrumento_asociado):
     #Recojo los datos del form
     libro_id = request.form['id']
     descripcion = request.form['descripcion']
